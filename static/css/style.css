@@ -2590,3 +2590,19 @@ body.light-theme .pipeline-card > span {
 body.light-theme .pipeline-arrow {
     color: #2563eb;
 }
+
+/* =========================
+   LIGHT MODE - RESULT CHART FIX
+========================= */
+
+body.light-theme .chart-center-text {
+    color: #111827 !important;
+}
+
+body.light-theme .chart-card h2 {
+    color: #111827;
+}
+
+body.light-theme .chart-card p {
+    color: #526176;
+}
