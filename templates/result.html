@@ -7,33 +7,33 @@
 
     <title>Performance Report | Student Performance</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', path='/css/style.css') }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Student Performance Predictor</title>
-
     <link rel="icon"
           type="image/png"
           href="{{ url_for('static', path='/images/logo.png') }}">
 
     <link rel="stylesheet"
           href="{{ url_for('static', path='/css/style.css') }}">
+
+    <!-- REAL CHARTS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
 
 <header>
     <nav class="navbar">
 
         <div class="logo">
-    <img src="{{ url_for('static', path='/images/logo.png') }}"
-         alt="Student Performance Logo"
-         class="site-logo">
-    Student Performance
-</div>
+            <img src="{{ url_for('static', path='/images/logo.png') }}"
+                 alt="Student Performance Logo"
+                 class="site-logo">
+
+            Student Performance
+        </div>
 
         <div class="nav-links">
             <a href="/">Home</a>
@@ -51,7 +51,14 @@
 </header>
 
 
+<!-- =========================
+     MAIN DASHBOARD
+========================= -->
+
 <main class="dashboard-page">
+
+
+    <!-- HEADER -->
 
     <section class="dashboard-header">
 
@@ -64,12 +71,17 @@
         </h1>
 
         <p>
-            Our machine-learning model analyzed your study habits
-            and academic information to estimate your exam performance.
+            Your academic routine, learning environment and lifestyle
+            were analyzed to estimate your exam performance and identify
+            areas that may deserve your attention.
         </p>
 
     </section>
 
+
+    <!-- =========================
+         MAIN SCORE
+    ========================== -->
 
     <section class="score-card">
 
@@ -91,14 +103,15 @@
 
         <div class="grade-box">
 
-            <span>Performance Estimate</span>
+            <span>Model Estimate</span>
 
             <strong>
-                {{ prediction }}%
+                {{ prediction }} / 100
             </strong>
 
             <p>
-                Generated from your academic routine and previous performance.
+                Generated using a Random Forest regression model
+                trained on student performance data.
             </p>
 
         </div>
@@ -106,53 +119,341 @@
     </section>
 
 
+    <!-- =========================
+         REAL CHARTS
+    ========================== -->
+
+    <section class="charts-grid">
+
+
+        <!-- DOUGHNUT SCORE -->
+
+        <div class="dashboard-card chart-card">
+
+            <span class="mini-label">
+                PERFORMANCE
+            </span>
+
+            <h2>Predicted Performance</h2>
+
+            <div class="chart-container score-chart-container">
+
+                <canvas id="scoreChart"></canvas>
+
+            </div>
+
+            <p class="chart-description">
+                This chart represents the exam score estimated by
+                the machine-learning model.
+            </p>
+
+        </div>
+
+
+        <!-- RADAR PROFILE -->
+
+        <div class="dashboard-card chart-card">
+
+            <span class="mini-label">
+                ACADEMIC PROFILE
+            </span>
+
+            <h2>Your Performance Profile</h2>
+
+            <div class="chart-container">
+
+                <canvas id="profileChart"></canvas>
+
+            </div>
+
+            <p class="chart-description">
+                A normalized visualization of your academic routine.
+                These values represent your inputs, not ML feature importance.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ATTENDANCE
+    ========================== -->
+
+    <section class="dashboard-card attendance-card">
+
+        <div class="dashboard-section-heading">
+
+            <div>
+
+                <span class="mini-label">
+                    ATTENDANCE ANALYSIS
+                </span>
+
+                <h2>Your attendance pattern</h2>
+
+            </div>
+
+            <strong class="attendance-value">
+                {{ attendance }}%
+            </strong>
+
+        </div>
+
+
+        <div class="attendance-track">
+
+            <div style="width: {{ attendance }}%;"></div>
+
+        </div>
+
+
+        <div class="attendance-details">
+
+            <span>
+                {{ classes_attended }} of {{ classes_per_week }} classes attended
+            </span>
+
+            <span>
+                {{ attendance }}% attendance rate
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROFILE
+    ========================== -->
+
     <section class="dashboard-grid">
+
+
+        <!-- ACADEMIC PROFILE -->
 
         <div class="dashboard-card">
 
-            <h2>Your Academic Profile</h2>
+            <h2>Academic Profile</h2>
+
 
             <div class="data-row">
                 <span>Study time</span>
                 <strong>{{ hours_studied }} hrs/week</strong>
             </div>
 
+
             <div class="data-row">
-                <span>Attendance</span>
-                <strong>{{ attendance }}%</strong>
+                <span>Previous academic score</span>
+                <strong>{{ previous_scores }}/100</strong>
             </div>
+
 
             <div class="data-row">
                 <span>Sleep</span>
                 <strong>{{ sleep_hours }} hrs/night</strong>
             </div>
 
-            <div class="data-row">
-                <span>Previous score</span>
-                <strong>{{ previous_scores }}/100</strong>
-            </div>
 
             <div class="data-row">
                 <span>Motivation</span>
                 <strong>{{ motivation_level }}</strong>
             </div>
 
+
             <div class="data-row">
-                <span>Tutoring</span>
-                <strong>{{ tutoring_sessions }}</strong>
+                <span>Tutoring sessions</span>
+                <strong>{{ tutoring_sessions }}/month</strong>
             </div>
+
 
             <div class="data-row">
                 <span>Physical activity</span>
                 <strong>{{ physical_activity }} days/week</strong>
             </div>
 
+
             <div class="data-row">
                 <span>Extracurricular activities</span>
                 <strong>{{ extracurricular_activities }}</strong>
             </div>
 
+
+            <div class="data-row">
+                <span>Distance from school</span>
+                <strong>{{ distance_from_home }}</strong>
+            </div>
+
         </div>
+
+
+        <!-- LEARNING ENVIRONMENT -->
+
+        <div class="dashboard-card">
+
+            <h2>Learning Environment</h2>
+
+
+            <div class="data-row">
+                <span>Parental involvement</span>
+                <strong>{{ parental_involvement }}</strong>
+            </div>
+
+
+            <div class="data-row">
+                <span>Learning resources</span>
+                <strong>{{ access_to_resources }}</strong>
+            </div>
+
+
+            <div class="data-row">
+                <span>Internet access</span>
+                <strong>{{ internet_access }}</strong>
+            </div>
+
+
+            <div class="data-row">
+                <span>Teacher quality</span>
+                <strong>{{ teacher_quality }}</strong>
+            </div>
+
+
+            <div class="data-row">
+                <span>Peer influence</span>
+                <strong>{{ peer_influence }}</strong>
+            </div>
+
+
+            <div class="data-row">
+                <span>Attendance</span>
+                <strong>{{ attendance }}%</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FACTOR BARS
+    ========================== -->
+
+    <section class="dashboard-card factor-card">
+
+        <div class="dashboard-section-heading">
+
+            <div>
+
+                <span class="mini-label">
+                    PROFILE OVERVIEW
+                </span>
+
+                <h2>Your key academic factors</h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="factor-grid">
+
+
+            <!-- ATTENDANCE -->
+
+            <div class="factor-item">
+
+                <div>
+                    <span>Attendance</span>
+                    <strong>{{ attendance }}%</strong>
+                </div>
+
+                <div class="factor-track">
+                    <div style="width: {{ attendance }}%;"></div>
+                </div>
+
+            </div>
+
+
+            <!-- PREVIOUS SCORE -->
+
+            <div class="factor-item">
+
+                <div>
+                    <span>Previous Performance</span>
+                    <strong>{{ previous_scores }}%</strong>
+                </div>
+
+                <div class="factor-track">
+                    <div style="width: {{ previous_scores }}%;"></div>
+                </div>
+
+            </div>
+
+
+            <!-- STUDY TIME -->
+
+            <div class="factor-item">
+
+                <div>
+                    <span>Study Routine</span>
+                    <strong>{{ hours_studied }} hrs/week</strong>
+                </div>
+
+                <div class="factor-track">
+                    <div style="width: {{ [hours_studied * 2.5, 100] | min }}%;"></div>
+                </div>
+
+            </div>
+
+
+            <!-- SLEEP -->
+
+            <div class="factor-item">
+
+                <div>
+                    <span>Sleep Routine</span>
+                    <strong>{{ sleep_hours }} hrs/night</strong>
+                </div>
+
+                <div class="factor-track">
+                    <div style="width: {{ [sleep_hours / 8 * 100, 100] | min }}%;"></div>
+                </div>
+
+            </div>
+
+
+            <!-- ACTIVITY -->
+
+            <div class="factor-item">
+
+                <div>
+                    <span>Physical Activity</span>
+                    <strong>{{ physical_activity }}/7 days</strong>
+                </div>
+
+                <div class="factor-track">
+                    <div style="width: {{ physical_activity / 7 * 100 }}%;"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <p class="chart-note">
+            These bars summarize your submitted information.
+            They should not be interpreted as causal effects or
+            machine-learning feature importance.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         INSIGHTS
+    ========================== -->
+
+    <section class="dashboard-grid">
 
 
         <div class="dashboard-card">
@@ -164,7 +465,8 @@
                 {% for insight in insights %}
 
                 <li>
-                    ✓ {{ insight }}
+                    <span>✓</span>
+                    {{ insight }}
                 </li>
 
                 {% endfor %}
@@ -173,12 +475,161 @@
 
         </div>
 
+
+        <!-- AREAS TO REVIEW -->
+
+        <div class="dashboard-card">
+
+            <h2>Areas to Review</h2>
+
+            <div class="review-list">
+
+
+                {% if attendance < 90 %}
+
+                <div>
+                    <strong>Attendance</strong>
+
+                    <p>
+                        You currently attend {{ attendance }}%
+                        of your scheduled classes.
+                    </p>
+                </div>
+
+                {% endif %}
+
+
+                {% if sleep_hours < 7 %}
+
+                <div>
+                    <strong>Sleep Routine</strong>
+
+                    <p>
+                        You currently report {{ sleep_hours }}
+                        hours of sleep per night.
+                    </p>
+                </div>
+
+                {% endif %}
+
+
+                {% if hours_studied < 20 %}
+
+                <div>
+                    <strong>Independent Study</strong>
+
+                    <p>
+                        Your current independent study time is
+                        {{ hours_studied }} hours per week.
+                    </p>
+                </div>
+
+                {% endif %}
+
+
+                {% if motivation_level == "Low" %}
+
+                <div>
+                    <strong>Motivation</strong>
+
+                    <p>
+                        You reported a low current level
+                        of academic motivation.
+                    </p>
+                </div>
+
+                {% endif %}
+
+
+                {% if access_to_resources == "Low" %}
+
+                <div>
+                    <strong>Learning Resources</strong>
+
+                    <p>
+                        You reported limited access to
+                        learning materials or academic resources.
+                    </p>
+                </div>
+
+                {% endif %}
+
+
+                {% if internet_access == "No" %}
+
+                <div>
+                    <strong>Internet Access</strong>
+
+                    <p>
+                        Reliable online learning resources
+                        may not always be available to you.
+                    </p>
+                </div>
+
+                {% endif %}
+
+
+                {% if peer_influence == "Negative" %}
+
+                <div>
+                    <strong>Peer Environment</strong>
+
+                    <p>
+                        Your reported peer environment may
+                        sometimes make focused studying more difficult.
+                    </p>
+                </div>
+
+                {% endif %}
+
+
+                {% if attendance >= 90
+                      and sleep_hours >= 7
+                      and hours_studied >= 20
+                      and motivation_level != "Low"
+                      and access_to_resources != "Low"
+                      and peer_influence != "Negative" %}
+
+                <div>
+
+                    <strong>Strong Overall Routine</strong>
+
+                    <p>
+                        Your reported profile does not show
+                        major routine-related concerns.
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
     </section>
 
 
+    <!-- =========================
+         RECOMMENDATIONS
+    ========================== -->
+
     <section class="dashboard-card recommendations-card">
 
-        <h2>Recommendations</h2>
+        <div class="dashboard-section-heading">
+
+            <div>
+
+                <span class="mini-label">
+                    NEXT STEPS
+                </span>
+
+                <h2>Personalized Recommendations</h2>
+
+            </div>
+
+        </div>
+
 
         <div class="recommendation-grid">
 
@@ -201,6 +652,10 @@
     </section>
 
 
+    <!-- =========================
+         MODEL INFORMATION
+    ========================== -->
+
     <section class="model-card">
 
         <div>
@@ -210,12 +665,12 @@
 
         <div>
             <span>R² SCORE</span>
-            <strong>0.606</strong>
+            <strong>0.670</strong>
         </div>
 
         <div>
             <span>MAE</span>
-            <strong>1.38</strong>
+            <strong>1.11</strong>
         </div>
 
         <div>
@@ -226,48 +681,436 @@
     </section>
 
 
+    <!-- ACTIONS -->
+
     <div class="dashboard-actions">
 
-        <a href="/predict" class="primary-button">
+        <a href="/predict"
+           class="primary-button">
+
             Analyze Again
+
         </a>
 
-        <a href="/how-it-works" class="secondary-button">
+
+        <a href="/how-it-works"
+           class="secondary-button">
+
             How The Model Works
+
         </a>
 
     </div>
 
 </main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer class="site-footer">
 
     <div class="footer-content">
 
         <div class="footer-brand">
+
             <img src="{{ url_for('static', path='/images/logo.png') }}"
                  alt="Student Performance Logo">
 
             <div>
-                <strong>Student Performance Predictor</strong>
-                <p>Data Science × Education</p>
+
+                <strong>
+                    Student Performance Predictor
+                </strong>
+
+                <p>
+                    Data Science × Education
+                </p>
+
             </div>
+
         </div>
 
+
         <div class="footer-links">
+
             <a href="/">Home</a>
             <a href="/predict">Predictor</a>
             <a href="/how-it-works">How It Works</a>
             <a href="/improve">Improve</a>
             <a href="/about">About</a>
+
         </div>
 
     </div>
 
+
     <div class="footer-bottom">
-        <span>Built with Python, FastAPI & scikit-learn</span>
-        <span>© 2026 Student Performance Predictor</span>
+
+        <span>
+            Built with Python, FastAPI & scikit-learn
+        </span>
+
+        <span>
+            © 2026 Student Performance Predictor
+        </span>
+
     </div>
 
 </footer>
+
+
+<!-- =========================
+     CHART.JS
+========================= -->
+
+<script>
+
+    // -------------------------
+    // USER VALUES
+    // -------------------------
+
+    const prediction =
+        {{ prediction }};
+
+    const attendance =
+        {{ attendance }};
+
+    const previousScore =
+        {{ previous_scores }};
+
+    const hoursStudied =
+        {{ hours_studied }};
+
+    const sleepHours =
+        {{ sleep_hours }};
+
+    const physicalActivity =
+        {{ physical_activity }};
+
+    const motivation =
+        "{{ motivation_level }}";
+
+
+    // -------------------------
+    // MOTIVATION NORMALIZATION
+    // -------------------------
+
+    let motivationScore = 50;
+
+    if (motivation === "Low") {
+
+        motivationScore = 33;
+
+    } else if (motivation === "Medium") {
+
+        motivationScore = 66;
+
+    } else if (motivation === "High") {
+
+        motivationScore = 100;
+
+    }
+
+
+    // -------------------------
+    // NORMALIZED VALUES
+    // visualization only
+    // -------------------------
+
+    const studyScore =
+        Math.min(
+            (hoursStudied / 40) * 100,
+            100
+        );
+
+
+    const sleepScore =
+        Math.min(
+            (sleepHours / 8) * 100,
+            100
+        );
+
+
+    const activityScore =
+        Math.min(
+            (physicalActivity / 7) * 100,
+            100
+        );
+
+
+    // =========================
+    // SCORE DOUGHNUT
+    // =========================
+
+    const scoreCanvas =
+        document.getElementById("scoreChart");
+
+
+    new Chart(
+        scoreCanvas,
+        {
+
+            type: "doughnut",
+
+            data: {
+
+                datasets: [{
+
+                    data: [
+                        prediction,
+                        Math.max(100 - prediction, 0)
+                    ],
+
+                    backgroundColor: [
+                        "#4d9fff",
+                        "#142136"
+                    ],
+
+                    borderWidth: 0
+
+                }]
+
+            },
+
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                cutout: "78%",
+
+                animation: {
+                    duration: 1000
+                },
+
+                plugins: {
+
+                    legend: {
+                        display: false
+                    },
+
+                    tooltip: {
+                        enabled: false
+                    }
+
+                }
+
+            },
+
+
+            plugins: [{
+
+                id: "centerText",
+
+                afterDraw(chart) {
+
+                    const ctx =
+                        chart.ctx;
+
+                    const width =
+                        chart.width;
+
+                    const height =
+                        chart.height;
+
+
+                    ctx.save();
+
+
+                    ctx.fillStyle =
+                        "#ffffff";
+
+                    ctx.font =
+                        "700 30px Arial";
+
+                    ctx.textAlign =
+                        "center";
+
+                    ctx.textBaseline =
+                        "middle";
+
+
+                    ctx.fillText(
+                        prediction + "/100",
+                        width / 2,
+                        height / 2
+                    );
+
+
+                    ctx.restore();
+
+                }
+
+            }]
+
+        }
+    );
+
+
+    // =========================
+    // RADAR PROFILE
+    // =========================
+
+    const profileCanvas =
+        document.getElementById("profileChart");
+
+
+    new Chart(
+        profileCanvas,
+        {
+
+            type: "radar",
+
+            data: {
+
+                labels: [
+                    "Attendance",
+                    "Previous Score",
+                    "Study",
+                    "Sleep",
+                    "Motivation",
+                    "Activity"
+                ],
+
+
+                datasets: [{
+
+                    label:
+                        "Your Academic Profile",
+
+                    data: [
+                        attendance,
+                        previousScore,
+                        studyScore,
+                        sleepScore,
+                        motivationScore,
+                        activityScore
+                    ],
+
+
+                    backgroundColor:
+                        "rgba(77,159,255,0.18)",
+
+                    borderColor:
+                        "#4d9fff",
+
+                    pointBackgroundColor:
+                        "#4d9fff",
+
+                    pointBorderColor:
+                        "#ffffff",
+
+                    pointRadius: 4,
+
+                    borderWidth: 2
+
+                }]
+
+            },
+
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                animation: {
+                    duration: 1000
+                },
+
+
+                scales: {
+
+                    r: {
+
+                        min: 0,
+                        max: 100,
+
+
+                        ticks: {
+
+                            display: false,
+
+                            stepSize: 20
+
+                        },
+
+
+                        grid: {
+
+                            color:
+                                "rgba(255,255,255,0.08)"
+
+                        },
+
+
+                        angleLines: {
+
+                            color:
+                                "rgba(255,255,255,0.08)"
+
+                        },
+
+
+                        pointLabels: {
+
+                            color:
+                                "#a8b4c4",
+
+                            font: {
+
+                                size: 12
+
+                            }
+
+                        }
+
+                    }
+
+                },
+
+
+                plugins: {
+
+                    legend: {
+
+                        display: false
+
+                    },
+
+                    tooltip: {
+
+                        callbacks: {
+
+                            label(context) {
+
+                                return (
+                                    context.label +
+                                    ": " +
+                                    Math.round(context.raw) +
+                                    "%"
+                                );
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+    );
+
+</script>
+
+
 </body>
 </html>

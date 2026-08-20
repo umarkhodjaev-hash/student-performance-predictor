@@ -1958,3 +1958,444 @@ h1 span {
     }
 }
 
+/* =========================
+   ADVANCED RESULTS DASHBOARD
+========================= */
+
+.dashboard-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 25px;
+
+    margin-bottom: 25px;
+}
+
+.mini-label {
+    color: #4d9fff;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+}
+
+
+/* SCORE RING */
+
+.score-visual {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+
+    background: #07111f;
+
+    border: 1px solid #25364d;
+    border-radius: 16px;
+
+    padding: 25px;
+}
+
+.score-visual > p {
+    color: #7f8fa4;
+
+    max-width: 250px;
+
+    line-height: 1.6;
+}
+
+.score-ring {
+    --score: 0;
+
+    width: 135px;
+    height: 135px;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            #4d9fff calc(var(--score) * 1%),
+            #142136 0
+        );
+
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+}
+
+.score-ring-inner {
+    width: 105px;
+    height: 105px;
+
+    border-radius: 50%;
+
+    background: #07111f;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-ring-inner strong {
+    color: white;
+
+    font-size: 30px;
+}
+
+.score-ring-inner span {
+    color: #68788d;
+
+    font-size: 12px;
+}
+
+
+/* ATTENDANCE */
+
+.attendance-value {
+    color: #4d9fff;
+
+    font-size: 32px;
+}
+
+.attendance-track {
+    width: 100%;
+    height: 13px;
+
+    background: #07111f;
+
+    border-radius: 50px;
+
+    overflow: hidden;
+}
+
+.attendance-track > div {
+    height: 100%;
+
+    background: #388cf4;
+
+    border-radius: inherit;
+}
+
+.attendance-details {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 11px;
+
+    color: #74859a;
+
+    font-size: 12px;
+}
+
+
+/* FACTOR CHART */
+
+.factor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px 35px;
+}
+
+.factor-item > div:first-child {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 9px;
+}
+
+.factor-item span {
+    color: #98a6b9;
+
+    font-size: 13px;
+}
+
+.factor-item strong {
+    font-size: 13px;
+}
+
+.factor-track {
+    height: 9px;
+
+    background: #07111f;
+
+    border-radius: 50px;
+
+    overflow: hidden;
+}
+
+.factor-track > div {
+    height: 100%;
+
+    background: #388cf4;
+
+    border-radius: inherit;
+}
+
+.chart-note {
+    color: #59697e;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+    margin-top: 25px;
+}
+
+
+/* INSIGHTS */
+
+.insight-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.insight-list li {
+    display: flex;
+    gap: 10px;
+
+    padding: 15px 0;
+
+    color: #a8b4c4;
+
+    line-height: 1.55;
+
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.insight-list li span {
+    color: #4d9fff;
+
+    font-weight: 800;
+}
+
+
+/* AREAS TO REVIEW */
+
+.review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.review-list > div {
+    background: #07111f;
+
+    border: 1px solid #25364d;
+    border-radius: 11px;
+
+    padding: 17px;
+}
+
+.review-list strong {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 14px;
+}
+
+.review-list p {
+    color: #7f8fa4;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .score-visual {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .factor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .attendance-details {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .dashboard-section-heading {
+        flex-direction: column;
+    }
+}
+
+/* =========================
+   REAL RESULTS CHARTS
+========================= */
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 28px;
+}
+
+.chart-card {
+    min-height: 470px;
+}
+
+.chart-card h2 {
+    margin-top: 8px;
+    margin-bottom: 24px;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 330px;
+}
+
+.score-chart-container {
+    max-width: 330px;
+    margin: 0 auto;
+}
+
+.chart-description {
+    color: #66768b;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-top: 20px;
+}
+
+.dashboard-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.mini-label {
+    color: #4d9fff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.attendance-value {
+    color: #4d9fff;
+    font-size: 32px;
+}
+
+.attendance-track {
+    width: 100%;
+    height: 13px;
+    background: #07111f;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.attendance-track > div {
+    height: 100%;
+    background: #388cf4;
+    border-radius: inherit;
+}
+
+.attendance-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 11px;
+    color: #74859a;
+    font-size: 12px;
+}
+
+.factor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px 35px;
+}
+
+.factor-item > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 9px;
+}
+
+.factor-item span {
+    color: #98a6b9;
+    font-size: 13px;
+}
+
+.factor-item strong {
+    font-size: 13px;
+}
+
+.factor-track {
+    height: 9px;
+    background: #07111f;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.factor-track > div {
+    height: 100%;
+    background: #388cf4;
+    border-radius: inherit;
+}
+
+.chart-note {
+    color: #59697e;
+    font-size: 11px;
+    line-height: 1.6;
+    margin-top: 25px;
+}
+
+.review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.review-list > div {
+    background: #07111f;
+    border: 1px solid #25364d;
+    border-radius: 11px;
+    padding: 17px;
+}
+
+.review-list strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.review-list p {
+    color: #7f8fa4;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+@media (max-width: 850px) {
+
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .factor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .attendance-details {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .dashboard-section-heading {
+        flex-direction: column;
+    }
+
+    .chart-card {
+        min-height: 440px;
+    }
+}
