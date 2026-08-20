@@ -2399,3 +2399,23 @@ h1 span {
         min-height: 440px;
     }
 }
+
+/* Chart visual upgrade */
+
+.chart-card {
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(124, 92, 255, 0.08),
+            transparent 45%
+        ),
+        #0d1b2d;
+
+    border: 1px solid rgba(124, 92, 255, 0.18);
+}
+
+.chart-container canvas {
+    filter: drop-shadow(
+        0 0 18px rgba(124, 92, 255, 0.12)
+    );
+}
