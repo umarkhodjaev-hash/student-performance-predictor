@@ -43,9 +43,22 @@
             <a href="/about">About</a>
         </div>
 
-        <a href="/predict" class="nav-button">
-            Analyze Again
-        </a>
+<div class="nav-actions">
+
+    <button
+        id="themeToggle"
+        class="theme-toggle"
+        type="button"
+        aria-label="Switch theme"
+    >
+        🌙
+    </button>
+
+    <a href="/predict" class="nav-button">
+        Analyze Again
+    </a>
+
+</div>
 
     </nav>
 </header>
@@ -1114,7 +1127,6 @@ angleLines: {
     );
 
 </script>
-
-
+<script src="{{ url_for('static', path='/jss/theme.js') }}"></script>
 </body>
 </html>
