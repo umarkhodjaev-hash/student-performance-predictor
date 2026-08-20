@@ -2564,3 +2564,29 @@ body.light-theme .secondary-button:hover {
     color: #2563eb;
     border-color: #2563eb;
 }
+
+/* =========================
+   LIGHT MODE - HOW IT WORKS FIX
+========================= */
+
+body.light-theme .pipeline-card {
+    background: #ffffff;
+    border: 1px solid #dfe5ee;
+    color: #111827;
+}
+
+body.light-theme .pipeline-card h3 {
+    color: #111827;
+}
+
+body.light-theme .pipeline-card p {
+    color: #5f6b7a;
+}
+
+body.light-theme .pipeline-card > span {
+    color: #2563eb;
+}
+
+body.light-theme .pipeline-arrow {
+    color: #2563eb;
+}
