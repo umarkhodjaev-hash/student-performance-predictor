@@ -29,12 +29,18 @@ print(df.columns.tolist())
 features = [
     "Hours_Studied",
     "Attendance",
+    "Parental_Involvement",
+    "Access_to_Resources",
+    "Extracurricular_Activities",
     "Sleep_Hours",
     "Previous_Scores",
     "Motivation_Level",
+    "Internet_Access",
     "Tutoring_Sessions",
+    "Teacher_Quality",
+    "Peer_Influence",
     "Physical_Activity",
-    "Extracurricular_Activities"
+    "Distance_from_Home"
 ]
 
 target = "Exam_Score"
@@ -57,8 +63,14 @@ numeric_features = [
 ]
 
 categorical_features = [
+    "Parental_Involvement",
+    "Access_to_Resources",
+    "Extracurricular_Activities",
     "Motivation_Level",
-    "Extracurricular_Activities"
+    "Internet_Access",
+    "Teacher_Quality",
+    "Peer_Influence",
+    "Distance_from_Home"
 ]
 
 
@@ -167,6 +179,7 @@ r2 = r2_score(
 print("\nModel trained successfully!")
 print(f"MAE: {mae:.2f}")
 print(f"R2 Score: {r2:.3f}")
+
 
 
 # =========================

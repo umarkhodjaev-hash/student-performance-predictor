@@ -7,14 +7,6 @@
 
     <title>Predictor | Student Performance</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', path='/css/style.css') }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Student Performance Predictor</title>
-
     <link rel="icon"
           type="image/png"
           href="{{ url_for('static', path='/images/logo.png') }}">
@@ -28,12 +20,13 @@
 <header>
     <nav class="navbar">
 
-   <div class="logo">
-    <img src="{{ url_for('static', path='/images/logo.png') }}"
-         alt="Student Performance Logo"
-         class="site-logo">
-    Student Performance
-</div>
+        <div class="logo">
+            <img src="{{ url_for('static', path='/images/logo.png') }}"
+                 alt="Student Performance Logo"
+                 class="site-logo">
+
+            Student Performance
+        </div>
 
         <div class="nav-links">
             <a href="/">Home</a>
@@ -56,78 +49,108 @@
     <section class="predict-header">
 
         <div class="tag">
-            PERFORMANCE ANALYSIS
+            DETAILED PERFORMANCE ANALYSIS
         </div>
 
-        <h2>Tell us about your academic routine.</h2>
+        <h1>
+            Build your academic profile.
+        </h1>
 
         <p>
-            Enter a few details about your study habits and recent academic performance.
-            Our machine-learning model will analyze the patterns and estimate your exam score.
+            Answer a few questions about your academic routine, learning
+            environment and lifestyle. The model uses these factors to
+            estimate your exam performance and generate personalized insights.
         </p>
 
     </section>
 
 
-    <section class="predict-card">
+    <form action="/predict" method="post">
 
-        <form action="/predict" method="post">
+
+        <!-- =========================
+             SECTION 1
+        ========================== -->
+
+        <section class="question-section">
+
+            <div class="question-section-header">
+
+                <span>01</span>
+
+                <div>
+                    <h2>Academic Routine</h2>
+                    <p>
+                        These questions help us understand your workload,
+                        attendance and independent study habits.
+                    </p>
+                </div>
+
+            </div>
+
 
             <div class="form-grid">
 
+
                 <div class="form-group">
-                    <label>Hours studied per week</label>
+                    <label>How many classes do you have per week?</label>
+
+                    <input
+                        type="number"
+                        name="classes_per_week"
+                        min="1"
+                        max="100"
+                        placeholder="30"
+                        required
+                    >
+
+                    <span>
+                        Used to calculate attendance fairly for students
+                        with different schedules.
+                    </span>
+                </div>
+
+
+                <div class="form-group">
+                    <label>How many classes do you usually attend per week?</label>
+
+                    <input
+                        type="number"
+                        name="classes_attended"
+                        min="0"
+                        max="100"
+                        placeholder="27"
+                        required
+                    >
+
+                    <span>
+                        Compared with your total classes to calculate
+                        your attendance percentage.
+                    </span>
+                </div>
+
+
+                <div class="form-group">
+                    <label>How many hours do you study independently per week?</label>
 
                     <input
                         type="number"
                         name="hours_studied"
                         min="0"
-                        max="60"
+                        max="80"
                         step="1"
                         placeholder="20"
                         required
                     >
 
-                    <span>Total study hours per week</span>
+                    <span>
+                        Independent study time outside regular lessons.
+                    </span>
                 </div>
 
 
                 <div class="form-group">
-                    <label>Attendance</label>
-
-                    <input
-                        type="number"
-                        name="attendance"
-                        min="0"
-                        max="100"
-                        step="1"
-                        placeholder="90"
-                        required
-                    >
-
-                    <span>Attendance percentage</span>
-                </div>
-
-
-                <div class="form-group">
-                    <label>Sleep hours</label>
-
-                    <input
-                        type="number"
-                        name="sleep_hours"
-                        min="0"
-                        max="14"
-                        step="0.5"
-                        placeholder="7.5"
-                        required
-                    >
-
-                    <span>Average hours of sleep per night</span>
-                </div>
-
-
-                <div class="form-group">
-                    <label>Previous academic score</label>
+                    <label>What was your previous academic score?</label>
 
                     <input
                         type="number"
@@ -139,14 +162,223 @@
                         required
                     >
 
-                    <span>Previous score from 0 to 100</span>
+                    <span>
+                        Helps the model understand your recent academic
+                        starting point.
+                    </span>
                 </div>
 
 
                 <div class="form-group">
-                    <label>Motivation level</label>
+                    <label>How many tutoring sessions do you attend per month?</label>
+
+                    <input
+                        type="number"
+                        name="tutoring_sessions"
+                        min="0"
+                        max="30"
+                        step="1"
+                        placeholder="2"
+                        required
+                    >
+
+                    <span>
+                        Shows how much additional academic support you receive.
+                    </span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SECTION 2
+        ========================== -->
+
+        <section class="question-section">
+
+            <div class="question-section-header">
+
+                <span>02</span>
+
+                <div>
+                    <h2>Learning Environment</h2>
+                    <p>
+                        These factors describe the academic support and
+                        environment around you.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+                    <label>How involved are your parents in your education?</label>
+
+                    <select name="parental_involvement" required>
+
+                        <option value="" disabled selected>
+                            Select involvement level
+                        </option>
+
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+
+                    </select>
+
+                    <span>
+                        Academic encouragement and involvement at home.
+                    </span>
+                </div>
+
+
+                <div class="form-group">
+                    <label>How good is your access to learning resources?</label>
+
+                    <select name="access_to_resources" required>
+
+                        <option value="" disabled selected>
+                            Select access level
+                        </option>
+
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+
+                    </select>
+
+                    <span>
+                        Includes textbooks, learning materials and study tools.
+                    </span>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Do you have reliable internet access for studying?</label>
+
+                    <select name="internet_access" required>
+
+                        <option value="" disabled selected>
+                            Select an option
+                        </option>
+
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+
+                    </select>
+
+                    <span>
+                        Internet access can affect availability of online
+                        learning resources.
+                    </span>
+                </div>
+
+
+                <div class="form-group">
+                    <label>How would you rate your teacher quality?</label>
+
+                    <select name="teacher_quality" required>
+
+                        <option value="" disabled selected>
+                            Select teacher quality
+                        </option>
+
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+
+                    </select>
+
+                    <span>
+                        Provides context about the learning environment.
+                    </span>
+                </div>
+
+
+                <div class="form-group">
+                    <label>How do your friends generally influence your studies?</label>
+
+                    <select name="peer_influence" required>
+
+                        <option value="" disabled selected>
+                            Select peer influence
+                        </option>
+
+                        <option value="Negative">Negative</option>
+                        <option value="Neutral">Neutral</option>
+                        <option value="Positive">Positive</option>
+
+                    </select>
+
+                    <span>
+                        Helps describe whether your social environment
+                        supports or distracts from studying.
+                    </span>
+                </div>
+
+
+                <div class="form-group">
+                    <label>How far do you live from school?</label>
+
+                    <select name="distance_from_home" required>
+
+                        <option value="" disabled selected>
+                            Select distance
+                        </option>
+
+                        <option value="Near">Near</option>
+                        <option value="Moderate">Moderate</option>
+                        <option value="Far">Far</option>
+
+                    </select>
+
+                    <span>
+                        Travel distance may influence time available for
+                        study and rest.
+                    </span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SECTION 3
+        ========================== -->
+
+        <section class="question-section">
+
+            <div class="question-section-header">
+
+                <span>03</span>
+
+                <div>
+                    <h2>Motivation & Lifestyle</h2>
+                    <p>
+                        Your daily routine can provide additional context
+                        for academic performance.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+                    <label>How motivated are you to study?</label>
 
                     <select name="motivation_level" required>
+
                         <option value="" disabled selected>
                             Select motivation level
                         </option>
@@ -154,78 +386,115 @@
                         <option value="Low">Low</option>
                         <option value="Medium">Medium</option>
                         <option value="High">High</option>
+
                     </select>
 
-                    <span>Your current academic motivation</span>
+                    <span>
+                        Your current level of academic motivation.
+                    </span>
                 </div>
 
 
                 <div class="form-group">
-                    <label>Tutoring sessions</label>
+                    <label>How many hours do you usually sleep per night?</label>
 
                     <input
                         type="number"
-                        name="tutoring_sessions"
+                        name="sleep_hours"
                         min="0"
-                        max="20"
-                        step="1"
-                        placeholder="2"
+                        max="14"
+                        step="0.5"
+                        placeholder="7.5"
                         required
                     >
 
-                    <span>Number of tutoring sessions per month</span>
+                    <span>
+                        Average sleep duration on a typical school night.
+                    </span>
                 </div>
 
 
                 <div class="form-group">
-                    <label>Physical activity</label>
+                    <label>How many days per week are you physically active?</label>
 
-                    <input
-                        type="number"
-                        name="physical_activity"
-                        min="0"
-                        max="7"
-                        step="1"
-                        placeholder="3"
-                        required
-                    >
+                    <select name="physical_activity" required>
 
-                    <span>Days of physical activity per week</span>
+                        <option value="" disabled selected>
+                            Select days per week
+                        </option>
+
+                        <option value="0">0 days</option>
+                        <option value="1">1 day</option>
+                        <option value="2">2 days</option>
+                        <option value="3">3 days</option>
+                        <option value="4">4 days</option>
+                        <option value="5">5 days</option>
+                        <option value="6">6 days</option>
+                        <option value="7">7 days</option>
+
+                    </select>
+
+                    <span>
+                        Regular physical activity as part of your weekly routine.
+                    </span>
                 </div>
 
 
                 <div class="form-group">
-                    <label>Extracurricular activities</label>
+                    <label>Do you participate in extracurricular activities?</label>
 
                     <select name="extracurricular_activities" required>
+
                         <option value="" disabled selected>
                             Select an option
                         </option>
 
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
+
                     </select>
 
-                    <span>Participation in extracurricular activities</span>
+                    <span>
+                        Includes clubs, competitions, sports and other
+                        organized activities.
+                    </span>
                 </div>
 
             </div>
 
+        </section>
+
+
+        <div class="predict-submit-area">
+
+            <div>
+
+                <strong>Ready for your analysis?</strong>
+
+                <p>
+                    Your answers are used to create a performance estimate
+                    and personalized academic report.
+                </p>
+
+            </div>
 
             <button class="analyze-button" type="submit">
                 Analyze My Performance →
             </button>
 
-        </form>
+        </div>
 
-    </section>
+    </form>
 
 </main>
+
+
 <footer class="site-footer">
 
     <div class="footer-content">
 
         <div class="footer-brand">
+
             <img src="{{ url_for('static', path='/images/logo.png') }}"
                  alt="Student Performance Logo">
 
@@ -233,7 +502,9 @@
                 <strong>Student Performance Predictor</strong>
                 <p>Data Science × Education</p>
             </div>
+
         </div>
+
 
         <div class="footer-links">
             <a href="/">Home</a>
@@ -245,11 +516,13 @@
 
     </div>
 
+
     <div class="footer-bottom">
         <span>Built with Python, FastAPI & scikit-learn</span>
         <span>© 2026 Student Performance Predictor</span>
     </div>
 
 </footer>
+
 </body>
 </html>

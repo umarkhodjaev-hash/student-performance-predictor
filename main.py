@@ -7,10 +7,6 @@ import pandas as pd
 import joblib
 
 
-# =========================
-# APP SETUP
-# =========================
-
 app = FastAPI()
 app.add_middleware(
     SessionMiddleware,
@@ -25,16 +21,8 @@ app.mount(
 )
 
 
-# =========================
-# LOAD ML MODEL
-# =========================
-
 model = joblib.load("model/student_model.pkl")
 
-
-# =========================
-# HOME
-# =========================
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
@@ -49,60 +37,65 @@ async def home(request: Request):
         }
     )
 
-# =========================
-# PREDICTOR PAGE
-# =========================
+    @app.post("/predict", response_class=HTMLResponse)
+    async def make_prediction(
+            request: Request,
 
-@app.get("/predict", response_class=HTMLResponse)
-async def predictor(request: Request):
+            # Academic routine
+            hours_studied: float = Form(...),
+            classes_per_week: int = Form(...),
+            classes_attended: int = Form(...),
+            previous_scores: float = Form(...),
 
-    return templates.TemplateResponse(
-        request=request,
-        name="predict.html",
-        context={}
-    )
+            # Academic / learning environment
+            parental_involvement: str = Form(...),
+            access_to_resources: str = Form(...),
+            motivation_level: str = Form(...),
+            internet_access: str = Form(...),
+            tutoring_sessions: int = Form(...),
+            teacher_quality: str = Form(...),
+            peer_influence: str = Form(...),
 
+            # Lifestyle
+            sleep_hours: float = Form(...),
+            physical_activity: int = Form(...),
+            extracurricular_activities: str = Form(...),
 
-# =========================
-# MAKE PREDICTION
-# =========================
+            # Logistics
+            distance_from_home: str = Form(...)
+    ):
 
-@app.post("/predict", response_class=HTMLResponse)
-async def make_prediction(
-    request: Request,
+        # =========================
+        # ATTENDANCE CALCULATION
+        # =========================
 
-    hours_studied: float = Form(...),
-    attendance: float = Form(...),
-    sleep_hours: float = Form(...),
-    previous_scores: float = Form(...),
+        if classes_per_week <= 0:
+            attendance = 0
+        else:
+            attendance = (classes_attended / classes_per_week) * 100
 
-    motivation_level: str = Form(...),
+        attendance = round(min(attendance, 100), 1)
 
-    tutoring_sessions: int = Form(...),
-    physical_activity: int = Form(...),
+        # =========================
+        # MODEL INPUT
+        # =========================
 
-    extracurricular_activities: str = Form(...)
-):
-
-    # Create dataframe in exactly the same
-    # format used during model training
-
-    data = pd.DataFrame({
-        "Hours_Studied": [hours_studied],
-        "Attendance": [attendance],
-        "Sleep_Hours": [sleep_hours],
-        "Previous_Scores": [previous_scores],
-        "Motivation_Level": [motivation_level],
-        "Tutoring_Sessions": [tutoring_sessions],
-        "Physical_Activity": [physical_activity],
-        "Extracurricular_Activities": [extracurricular_activities]
-    })
-
-
-    # =========================
-    # PREDICTION
-    # =========================
-
+        data = pd.DataFrame({
+            "Hours_Studied": [hours_studied],
+            "Attendance": [attendance],
+            "Parental_Involvement": [parental_involvement],
+            "Access_to_Resources": [access_to_resources],
+            "Extracurricular_Activities": [extracurricular_activities],
+            "Sleep_Hours": [sleep_hours],
+            "Previous_Scores": [previous_scores],
+            "Motivation_Level": [motivation_level],
+            "Internet_Access": [internet_access],
+            "Tutoring_Sessions": [tutoring_sessions],
+            "Teacher_Quality": [teacher_quality],
+            "Peer_Influence": [peer_influence],
+            "Physical_Activity": [physical_activity],
+            "Distance_from_Home": [distance_from_home]
+        })
     prediction = model.predict(data)[0]
 
     prediction = round(float(prediction), 1)
