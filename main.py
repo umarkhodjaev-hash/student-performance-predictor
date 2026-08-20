@@ -259,3 +259,44 @@ async def about(request: Request):
         name="about.html",
         context={}
     )
+
+
+from fastapi.responses import Response
+
+@app.get("/sitemap.xml")
+async def sitemap():
+    content = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>https://student-performance-predictor-bas2.onrender.com/</loc>
+    </url>
+
+    <url>
+        <loc>https://student-performance-predictor-bas2.onrender.com/predict</loc>
+    </url>
+
+    <url>
+        <loc>https://student-performance-predictor-bas2.onrender.com/how-it-works</loc>
+    </url>
+
+    <url>
+        <loc>https://student-performance-predictor-bas2.onrender.com/improve</loc>
+    </url>
+
+    <url>
+        <loc>https://student-performance-predictor-bas2.onrender.com/about</loc>
+    </url>
+
+</urlset>"""
+
+    return Response(content=content, media_type="application/xml")
+
+@app.get("/robots.txt")
+async def robots():
+    content = """User-agent: *
+Allow: /
+
+Sitemap: https://student-performance-predictor-bas2.onrender.com/sitemap.xml
+"""
+    return Response(content=content, media_type="text/plain")
