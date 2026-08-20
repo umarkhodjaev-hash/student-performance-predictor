@@ -2549,3 +2549,18 @@ body.light-theme .footer-bottom {
     color: #6b7280;
 }
 
+/* =========================
+   LIGHT MODE BUTTON FIX
+========================= */
+
+body.light-theme .secondary-button {
+    background: #ffffff;
+    color: #172033;
+    border: 1px solid #243b5a;
+}
+
+body.light-theme .secondary-button:hover {
+    background: #eef4ff;
+    color: #2563eb;
+    border-color: #2563eb;
+}
