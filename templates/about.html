@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About | Student Performance</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='/css/style.css') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Performance Predictor</title>
+
+    <link rel="icon"
+          type="image/png"
+          href="{{ url_for('static', path='/images/logo.png') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='/css/style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+
+<div class="logo">
+    <img src="{{ url_for('static', path='/images/logo.png') }}"
+         alt="Student Performance Logo"
+         class="site-logo">
+    Student Performance
+</div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/predict">Predictor</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/improve">Improve</a>
+            <a href="/about" class="active">About</a>
+        </div>
+
+        <a href="/predict" class="nav-button">
+            Analyze Now
+        </a>
+
+    </nav>
+</header>
+
+
+<main class="about-page">
+
+    <section class="about-hero">
+
+        <div class="tag">
+            ABOUT THE PROJECT
+        </div>
+
+        <h1>
+            Why I built Student Performance Predictor.
+        </h1>
+
+        <p>
+            Students can sit in the same classroom, study the same material
+            and take the same exam, yet achieve very different results.
+            I wanted to understand why.
+        </p>
+
+    </section>
+
+
+    <section class="about-story">
+
+        <div class="about-story-number">
+            01
+        </div>
+
+        <div>
+            <h2>The question</h2>
+
+            <p>
+                I began noticing that academic performance could not always
+                be explained by effort alone. Some students studied for long
+                hours but still struggled, while others seemed to perform
+                consistently with less visible effort.
+            </p>
+
+            <p>
+                That made me ask a simple question: what factors actually
+                influence a student's academic performance?
+            </p>
+        </div>
+
+    </section>
+
+
+    <section class="about-story">
+
+        <div class="about-story-number">
+            02
+        </div>
+
+        <div>
+            <h2>From observation to data</h2>
+
+            <p>
+                As I learned more about Python, statistics and machine learning,
+                I realized that data science gave me a way to explore this
+                question more systematically.
+            </p>
+
+            <p>
+                Instead of relying only on assumptions, I could analyze
+                variables such as study time, attendance, sleep, previous
+                academic performance and motivation.
+            </p>
+        </div>
+
+    </section>
+
+
+    <section class="about-story">
+
+        <div class="about-story-number">
+            03
+        </div>
+
+        <div>
+            <h2>Building the predictor</h2>
+
+            <p>
+                I developed Student Performance Predictor as a data science
+                application that estimates exam performance using academic
+                and behavioral information.
+            </p>
+
+            <p>
+                The project combines a machine-learning model with a web
+                interface so that students can enter their own information
+                and receive an estimated score, insights and practical
+                recommendations.
+            </p>
+        </div>
+
+    </section>
+
+
+    <section class="about-story">
+
+        <div class="about-story-number">
+            04
+        </div>
+
+        <div>
+            <h2>What I learned</h2>
+
+            <p>
+                Building the project taught me that prediction is only one
+                part of data science. A model can identify patterns, but it
+                cannot capture every factor that shapes human performance.
+            </p>
+
+            <p>
+                That made me more interested not only in producing predictions,
+                but also in understanding uncertainty, evaluating models and
+                communicating results responsibly.
+            </p>
+        </div>
+
+    </section>
+
+
+    <section class="about-vision">
+
+        <div class="tag">
+            FUTURE VISION
+        </div>
+
+        <h2>
+            From predicting performance to helping improve it.
+        </h2>
+
+        <p>
+            My long-term goal is to develop the project into a system that
+            does more than estimate an exam score. I want it to help students
+            understand patterns in their own routines, track progress over
+            time and make more informed decisions about how they learn.
+        </p>
+
+        <p>
+            As more data becomes available, I hope to improve the model,
+            test it with a wider range of students and explore how data-driven
+            tools can support education and productivity on a larger scale.
+        </p>
+
+    </section>
+
+
+    <section class="about-tech">
+
+        <h2>Built with</h2>
+
+        <div class="about-tech-grid">
+
+            <div>
+                <span>01</span>
+                <strong>Python</strong>
+                <p>Data processing and backend logic</p>
+            </div>
+
+            <div>
+                <span>02</span>
+                <strong>FastAPI</strong>
+                <p>Web application backend</p>
+            </div>
+
+            <div>
+                <span>03</span>
+                <strong>scikit-learn</strong>
+                <p>Machine-learning model</p>
+            </div>
+
+            <div>
+                <span>04</span>
+                <strong>pandas</strong>
+                <p>Dataset preparation</p>
+            </div>
+
+            <div>
+                <span>05</span>
+                <strong>Jinja2</strong>
+                <p>Dynamic HTML templates</p>
+            </div>
+
+            <div>
+                <span>06</span>
+                <strong>HTML & CSS</strong>
+                <p>Interface and visual design</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="about-cta">
+
+        <div>
+            <h2>
+                Explore your own academic patterns.
+            </h2>
+
+            <p>
+                Use the predictor to see how your academic routine compares
+                with patterns learned from student performance data.
+            </p>
+        </div>
+
+        <a href="/predict" class="primary-button">
+            Analyze My Performance →
+        </a>
+
+    </section>
+
+</main>
+<footer class="site-footer">
+
+    <div class="footer-content">
+
+        <div class="footer-brand">
+            <img src="{{ url_for('static', path='/images/logo.png') }}"
+                 alt="Student Performance Logo">
+
+            <div>
+                <strong>Student Performance Predictor</strong>
+                <p>Data Science × Education</p>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/predict">Predictor</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/improve">Improve</a>
+            <a href="/about">About</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>Built with Python, FastAPI & scikit-learn</span>
+        <span>© 2026 Student Performance Predictor</span>
+    </div>
+
+</footer>
+</body>
+</html>

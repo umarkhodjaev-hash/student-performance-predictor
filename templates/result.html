@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Performance Report | Student Performance</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='/css/style.css') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Performance Predictor</title>
+
+    <link rel="icon"
+          type="image/png"
+          href="{{ url_for('static', path='/images/logo.png') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='/css/style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+
+        <div class="logo">
+    <img src="{{ url_for('static', path='/images/logo.png') }}"
+         alt="Student Performance Logo"
+         class="site-logo">
+    Student Performance
+</div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/predict">Predictor</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/improve">Improve</a>
+            <a href="/about">About</a>
+        </div>
+
+        <a href="/predict" class="nav-button">
+            Analyze Again
+        </a>
+
+    </nav>
+</header>
+
+
+<main class="dashboard-page">
+
+    <section class="dashboard-header">
+
+        <div class="tag">
+            YOUR PERFORMANCE REPORT
+        </div>
+
+        <h1 class="dashboard-title">
+            Your academic analysis is ready.
+        </h1>
+
+        <p>
+            Our machine-learning model analyzed your study habits
+            and academic information to estimate your exam performance.
+        </p>
+
+    </section>
+
+
+    <section class="score-card">
+
+        <div class="score-main">
+
+            <p>Predicted Exam Score</p>
+
+            <div class="dashboard-score">
+                {{ prediction }}
+                <span>/100</span>
+            </div>
+
+            <div class="performance-level">
+                {{ performance_level }}
+            </div>
+
+        </div>
+
+
+        <div class="grade-box">
+
+            <span>Performance Estimate</span>
+
+            <strong>
+                {{ prediction }}%
+            </strong>
+
+            <p>
+                Generated from your academic routine and previous performance.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="dashboard-grid">
+
+        <div class="dashboard-card">
+
+            <h2>Your Academic Profile</h2>
+
+            <div class="data-row">
+                <span>Study time</span>
+                <strong>{{ hours_studied }} hrs/week</strong>
+            </div>
+
+            <div class="data-row">
+                <span>Attendance</span>
+                <strong>{{ attendance }}%</strong>
+            </div>
+
+            <div class="data-row">
+                <span>Sleep</span>
+                <strong>{{ sleep_hours }} hrs/night</strong>
+            </div>
+
+            <div class="data-row">
+                <span>Previous score</span>
+                <strong>{{ previous_scores }}/100</strong>
+            </div>
+
+            <div class="data-row">
+                <span>Motivation</span>
+                <strong>{{ motivation_level }}</strong>
+            </div>
+
+            <div class="data-row">
+                <span>Tutoring</span>
+                <strong>{{ tutoring_sessions }}</strong>
+            </div>
+
+            <div class="data-row">
+                <span>Physical activity</span>
+                <strong>{{ physical_activity }} days/week</strong>
+            </div>
+
+            <div class="data-row">
+                <span>Extracurricular activities</span>
+                <strong>{{ extracurricular_activities }}</strong>
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h2>Key Insights</h2>
+
+            <ul class="insight-list">
+
+                {% for insight in insights %}
+
+                <li>
+                    ✓ {{ insight }}
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <section class="dashboard-card recommendations-card">
+
+        <h2>Recommendations</h2>
+
+        <div class="recommendation-grid">
+
+            {% for recommendation in recommendations %}
+
+            <div class="recommendation-item">
+
+                <span>→</span>
+
+                <p>
+                    {{ recommendation }}
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <section class="model-card">
+
+        <div>
+            <span>MODEL</span>
+            <strong>Random Forest Regressor</strong>
+        </div>
+
+        <div>
+            <span>R² SCORE</span>
+            <strong>0.606</strong>
+        </div>
+
+        <div>
+            <span>MAE</span>
+            <strong>1.38</strong>
+        </div>
+
+        <div>
+            <span>TRAINING DATA</span>
+            <strong>6,607 Students</strong>
+        </div>
+
+    </section>
+
+
+    <div class="dashboard-actions">
+
+        <a href="/predict" class="primary-button">
+            Analyze Again
+        </a>
+
+        <a href="/how-it-works" class="secondary-button">
+            How The Model Works
+        </a>
+
+    </div>
+
+</main>
+<footer class="site-footer">
+
+    <div class="footer-content">
+
+        <div class="footer-brand">
+            <img src="{{ url_for('static', path='/images/logo.png') }}"
+                 alt="Student Performance Logo">
+
+            <div>
+                <strong>Student Performance Predictor</strong>
+                <p>Data Science × Education</p>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/predict">Predictor</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/improve">Improve</a>
+            <a href="/about">About</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>Built with Python, FastAPI & scikit-learn</span>
+        <span>© 2026 Student Performance Predictor</span>
+    </div>
+
+</footer>
+</body>
+</html>

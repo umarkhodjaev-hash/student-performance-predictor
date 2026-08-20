@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>How It Works | Student Performance</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='/css/style.css') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Performance Predictor</title>
+
+    <link rel="icon"
+          type="image/png"
+          href="{{ url_for('static', path='/images/logo.png') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='/css/style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+
+       <div class="logo">
+    <img src="{{ url_for('static', path='/images/logo.png') }}"
+         alt="Student Performance Logo"
+         class="site-logo">
+    Student Performance
+</div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/predict">Predictor</a>
+            <a href="/how-it-works" class="active">How It Works</a>
+            <a href="/improve">Improve</a>
+            <a href="/about">About</a>
+        </div>
+
+        <a href="/predict" class="nav-button">
+            Analyze Now
+        </a>
+
+    </nav>
+</header>
+
+
+<main class="how-page">
+
+    <!-- HEADER -->
+    <section class="how-header">
+
+        <div class="tag">
+            BEHIND THE MODEL
+        </div>
+
+        <h1>
+            How does the predictor work?
+        </h1>
+
+        <p>
+            Student Performance Predictor uses machine learning to analyze
+            academic habits and previous performance, then estimates a
+            student's exam score on a 0–100 scale.
+        </p>
+
+    </section>
+
+
+    <!-- PIPELINE -->
+    <section class="pipeline">
+
+        <div class="pipeline-card">
+            <span>01</span>
+
+            <h3>Student Input</h3>
+
+            <p>
+                You enter information such as study time, attendance,
+                sleep, previous scores, motivation and other academic habits.
+            </p>
+        </div>
+
+
+        <div class="pipeline-arrow">
+            →
+        </div>
+
+
+        <div class="pipeline-card">
+            <span>02</span>
+
+            <h3>Data Processing</h3>
+
+            <p>
+                The application organizes your information into the same
+                feature structure that was used during model training.
+            </p>
+        </div>
+
+
+        <div class="pipeline-arrow">
+            →
+        </div>
+
+
+        <div class="pipeline-card">
+            <span>03</span>
+
+            <h3>Machine Learning</h3>
+
+            <p>
+                A Random Forest regression model analyzes patterns learned
+                from thousands of student records.
+            </p>
+        </div>
+
+
+        <div class="pipeline-arrow">
+            →
+        </div>
+
+
+        <div class="pipeline-card">
+            <span>04</span>
+
+            <h3>Performance Report</h3>
+
+            <p>
+                The model estimates your exam score and the website presents
+                insights and personalized recommendations.
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- MODEL METRICS -->
+    <section class="model-details">
+
+        <div class="model-detail-card">
+            <span>MODEL</span>
+            <strong>Random Forest Regressor</strong>
+        </div>
+
+        <div class="model-detail-card">
+            <span>TRAINING DATA</span>
+            <strong>6,607 Students</strong>
+        </div>
+
+        <div class="model-detail-card">
+            <span>R² SCORE</span>
+            <strong>0.606</strong>
+        </div>
+
+        <div class="model-detail-card">
+            <span>MEAN ABSOLUTE ERROR</span>
+            <strong>1.38</strong>
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+    <section class="how-section">
+
+        <h2>
+            What information does the model use?
+        </h2>
+
+        <p class="section-description">
+            The model currently uses eight academic and behavioral features.
+        </p>
+
+
+        <div class="feature-grid">
+
+            <div class="feature-item">
+                <span>01</span>
+                <strong>Hours Studied</strong>
+                <p>Weekly study time.</p>
+            </div>
+
+            <div class="feature-item">
+                <span>02</span>
+                <strong>Attendance</strong>
+                <p>Percentage of attended classes.</p>
+            </div>
+
+            <div class="feature-item">
+                <span>03</span>
+                <strong>Sleep Hours</strong>
+                <p>Average sleep duration.</p>
+            </div>
+
+            <div class="feature-item">
+                <span>04</span>
+                <strong>Previous Scores</strong>
+                <p>Previous academic performance.</p>
+            </div>
+
+            <div class="feature-item">
+                <span>05</span>
+                <strong>Motivation Level</strong>
+                <p>Self-reported academic motivation.</p>
+            </div>
+
+            <div class="feature-item">
+                <span>06</span>
+                <strong>Tutoring Sessions</strong>
+                <p>Academic support sessions.</p>
+            </div>
+
+            <div class="feature-item">
+                <span>07</span>
+                <strong>Physical Activity</strong>
+                <p>Regular physical activity.</p>
+            </div>
+
+            <div class="feature-item">
+                <span>08</span>
+                <strong>Extracurricular Activities</strong>
+                <p>Participation outside regular classes.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TRAINING -->
+    <section class="how-section">
+
+        <h2>
+            How was the model trained?
+        </h2>
+
+        <div class="training-flow">
+
+            <div>
+                <span>STEP 1</span>
+                <strong>Dataset</strong>
+
+                <p>
+                    Student performance records were loaded and the eight
+                    selected variables were separated from the final exam score.
+                </p>
+            </div>
+
+
+            <div>
+                <span>STEP 2</span>
+                <strong>Train / Test Split</strong>
+
+                <p>
+                    80% of the records were used to train the model and
+                    20% were kept unseen for evaluation.
+                </p>
+            </div>
+
+
+            <div>
+                <span>STEP 3</span>
+                <strong>Preprocessing</strong>
+
+                <p>
+                    Missing values are handled automatically and categorical
+                    variables are converted into machine-readable features.
+                </p>
+            </div>
+
+
+            <div>
+                <span>STEP 4</span>
+                <strong>Evaluation</strong>
+
+                <p>
+                    Predictions on unseen test data were evaluated using
+                    Mean Absolute Error and the R² score.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- METRICS EXPLANATION -->
+    <section class="how-section">
+
+        <h2>
+            What do the metrics mean?
+        </h2>
+
+        <div class="metric-explanation-grid">
+
+            <div class="metric-explanation">
+
+                <span>MAE</span>
+
+                <h3>1.38</h3>
+
+                <p>
+                    Mean Absolute Error measures the average difference between
+                    the model's predicted exam score and the actual score.
+                </p>
+
+            </div>
+
+
+            <div class="metric-explanation">
+
+                <span>R²</span>
+
+                <h3>0.606</h3>
+
+                <p>
+                    R² describes how much of the variation in exam scores
+                    is explained by the information provided to the model.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LIMITATION -->
+    <section class="how-section limitation-section">
+
+        <div class="limitation-label">
+            IMPORTANT
+        </div>
+
+        <h2>
+            Prediction is not certainty.
+        </h2>
+
+        <p>
+            The predicted score is an estimate based on patterns in the
+            training data. Academic performance can also depend on factors
+            that are not included in this model, such as teaching quality,
+            stress, subject difficulty, learning environment and individual
+            circumstances.
+        </p>
+
+        <p>
+            The recommendations shown after a prediction are rule-based
+            guidance generated from the information entered by the user.
+            They should not be interpreted as proof that changing one habit
+            will directly cause a specific improvement in exam performance.
+        </p>
+
+<section class="how-section">
+
+    <h2>Dataset Source</h2>
+
+    <p>
+        This project uses the Student Performance Factors dataset,
+        which contains 6,607 student records and information related
+        to study habits, attendance, sleep, motivation, tutoring,
+        physical activity and exam performance.
+    </p>
+
+    <p>
+        The dataset was used to train and evaluate the machine-learning
+        model that powers this predictor.
+    </p>
+
+</section>
+
+
+    <!-- CTA -->
+    <section class="how-cta">
+
+        <div>
+            <h2>
+                Ready to analyze your performance?
+            </h2>
+
+            <p>
+                Enter your academic routine and receive a data-driven estimate.
+            </p>
+        </div>
+
+        <a href="/predict" class="primary-button">
+            Try the Predictor →
+        </a>
+
+    </section>
+
+</main>
+<footer class="site-footer">
+
+    <div class="footer-content">
+
+        <div class="footer-brand">
+            <img src="{{ url_for('static', path='/images/logo.png') }}"
+                 alt="Student Performance Logo">
+
+            <div>
+                <strong>Student Performance Predictor</strong>
+                <p>Data Science × Education</p>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/predict">Predictor</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/improve">Improve</a>
+            <a href="/about">About</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>Built with Python, FastAPI & scikit-learn</span>
+        <span>© 2026 Student Performance Predictor</span>
+    </div>
+
+</footer>
+</body>
+</html>

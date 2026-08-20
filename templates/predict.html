@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Predictor | Student Performance</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='/css/style.css') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Performance Predictor</title>
+
+    <link rel="icon"
+          type="image/png"
+          href="{{ url_for('static', path='/images/logo.png') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='/css/style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+
+   <div class="logo">
+    <img src="{{ url_for('static', path='/images/logo.png') }}"
+         alt="Student Performance Logo"
+         class="site-logo">
+    Student Performance
+</div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/predict" class="active">Predictor</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/improve">Improve</a>
+            <a href="/about">About</a>
+        </div>
+
+        <a href="/predict" class="nav-button">
+            Analyze Now
+        </a>
+
+    </nav>
+</header>
+
+
+<main class="predict-page">
+
+    <section class="predict-header">
+
+        <div class="tag">
+            PERFORMANCE ANALYSIS
+        </div>
+
+        <h2>Tell us about your academic routine.</h2>
+
+        <p>
+            Enter a few details about your study habits and recent academic performance.
+            Our machine-learning model will analyze the patterns and estimate your exam score.
+        </p>
+
+    </section>
+
+
+    <section class="predict-card">
+
+        <form action="/predict" method="post">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Hours studied per week</label>
+
+                    <input
+                        type="number"
+                        name="hours_studied"
+                        min="0"
+                        max="60"
+                        step="1"
+                        placeholder="20"
+                        required
+                    >
+
+                    <span>Total study hours per week</span>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Attendance</label>
+
+                    <input
+                        type="number"
+                        name="attendance"
+                        min="0"
+                        max="100"
+                        step="1"
+                        placeholder="90"
+                        required
+                    >
+
+                    <span>Attendance percentage</span>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Sleep hours</label>
+
+                    <input
+                        type="number"
+                        name="sleep_hours"
+                        min="0"
+                        max="14"
+                        step="0.5"
+                        placeholder="7.5"
+                        required
+                    >
+
+                    <span>Average hours of sleep per night</span>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Previous academic score</label>
+
+                    <input
+                        type="number"
+                        name="previous_scores"
+                        min="0"
+                        max="100"
+                        step="1"
+                        placeholder="80"
+                        required
+                    >
+
+                    <span>Previous score from 0 to 100</span>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Motivation level</label>
+
+                    <select name="motivation_level" required>
+                        <option value="" disabled selected>
+                            Select motivation level
+                        </option>
+
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+
+                    <span>Your current academic motivation</span>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Tutoring sessions</label>
+
+                    <input
+                        type="number"
+                        name="tutoring_sessions"
+                        min="0"
+                        max="20"
+                        step="1"
+                        placeholder="2"
+                        required
+                    >
+
+                    <span>Number of tutoring sessions per month</span>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Physical activity</label>
+
+                    <input
+                        type="number"
+                        name="physical_activity"
+                        min="0"
+                        max="7"
+                        step="1"
+                        placeholder="3"
+                        required
+                    >
+
+                    <span>Days of physical activity per week</span>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Extracurricular activities</label>
+
+                    <select name="extracurricular_activities" required>
+                        <option value="" disabled selected>
+                            Select an option
+                        </option>
+
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+
+                    <span>Participation in extracurricular activities</span>
+                </div>
+
+            </div>
+
+
+            <button class="analyze-button" type="submit">
+                Analyze My Performance →
+            </button>
+
+        </form>
+
+    </section>
+
+</main>
+<footer class="site-footer">
+
+    <div class="footer-content">
+
+        <div class="footer-brand">
+            <img src="{{ url_for('static', path='/images/logo.png') }}"
+                 alt="Student Performance Logo">
+
+            <div>
+                <strong>Student Performance Predictor</strong>
+                <p>Data Science × Education</p>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/predict">Predictor</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/improve">Improve</a>
+            <a href="/about">About</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>Built with Python, FastAPI & scikit-learn</span>
+        <span>© 2026 Student Performance Predictor</span>
+    </div>
+
+</footer>
+</body>
+</html>

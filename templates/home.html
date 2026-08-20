@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Performance Predictor</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='/css/style.css') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Performance Predictor</title>
+
+    <link rel="icon"
+          type="image/png"
+          href="{{ url_for('static', path='/images/logo.png') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='/css/style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+
+        <div class="logo">
+            <img src="{{ url_for('static', path='/images/logo.png') }}"
+                 alt="Student Performance Logo"
+                 class="site-logo">
+
+            Student Performance
+        </div>
+
+        <div class="nav-links">
+            <a href="/" class="active">Home</a>
+            <a href="/predict">Predictor</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/improve">Improve</a>
+            <a href="/about">About</a>
+        </div>
+
+        <a href="/predict" class="nav-button">
+            Analyze Now
+        </a>
+
+    </nav>
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+    <section class="home-hero">
+
+        <div class="home-hero-text">
+
+            <div class="tag">
+                DATA SCIENCE × EDUCATION
+            </div>
+
+            <h1>
+                Understand your habits.
+                <span>Improve your performance.</span>
+            </h1>
+
+            <p class="home-description">
+                Discover how your study habits, attendance, sleep,
+                motivation and academic history may relate to your
+                performance using data-driven analysis.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="/predict" class="primary-button">
+                    Analyze My Performance →
+                </a>
+
+                <a href="/how-it-works" class="secondary-button">
+                    How It Works
+                </a>
+
+            </div>
+
+        </div>
+
+
+ <!-- PREVIEW CARD -->
+<div class="performance-preview">
+
+    {% if last_analysis %}
+
+    <div class="preview-top">
+
+        <div>
+            <span class="preview-label">
+                YOUR LATEST ANALYSIS
+            </span>
+
+            <h3>Academic Analysis</h3>
+        </div>
+
+        <div class="preview-status">
+            PERSONAL
+        </div>
+
+    </div>
+
+
+    <div class="preview-score">
+
+        <div>
+            <span>Estimated Score</span>
+
+            <strong>
+                {{ last_analysis.prediction }}
+                <small>/100</small>
+            </strong>
+        </div>
+
+        <div class="preview-level">
+            {{ last_analysis.performance_level }}
+        </div>
+
+    </div>
+
+
+    <div class="preview-bars">
+
+        <div class="preview-bar-row">
+
+            <div>
+                <span>Study Time</span>
+
+                <strong>
+                    {{ last_analysis.hours_studied }} hrs/week
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="preview-bar-row">
+
+            <div>
+                <span>Attendance</span>
+
+                <strong>
+                    {{ last_analysis.attendance }}%
+                </strong>
+            </div>
+
+            <div class="preview-track">
+                <div style="width: {{ last_analysis.attendance }}%;"></div>
+            </div>
+
+        </div>
+
+
+        <div class="preview-bar-row">
+
+            <div>
+                <span>Sleep</span>
+
+                <strong>
+                    {{ last_analysis.sleep_hours }} hrs/night
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="preview-bar-row">
+
+            <div>
+                <span>Motivation</span>
+
+                <strong>
+                    {{ last_analysis.motivation_level }}
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="preview-footer">
+        Your latest performance analysis
+    </div>
+
+
+    {% else %}
+
+    <div class="preview-empty">
+
+        <span class="preview-label">
+            PERFORMANCE ANALYSIS
+        </span>
+
+        <h3>No analysis yet.</h3>
+
+        <p>
+            Complete the predictor to see your personal
+            academic report here.
+        </p>
+
+        <a href="/predict" class="primary-button">
+            Analyze My Performance →
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+            <div class="preview-score">
+
+                <div>
+                    <span>Estimated Score</span>
+
+                    <strong>
+                        82
+                        <small>/100</small>
+                    </strong>
+                </div>
+
+                <div class="preview-level">
+                    Very Good
+                </div>
+
+            </div>
+
+
+            <div class="preview-bars">
+
+                <div class="preview-bar-row">
+
+                    <div>
+                        <span>Study Routine</span>
+                        <strong>Strong</strong>
+                    </div>
+
+                    <div class="preview-track">
+                        <div style="width: 84%;"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="preview-bar-row">
+
+                    <div>
+                        <span>Attendance</span>
+                        <strong>92%</strong>
+                    </div>
+
+                    <div class="preview-track">
+                        <div style="width: 92%;"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="preview-bar-row">
+
+                    <div>
+                        <span>Sleep Routine</span>
+                        <strong>Good</strong>
+                    </div>
+
+                    <div class="preview-track">
+                        <div style="width: 76%;"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="preview-bar-row">
+
+                    <div>
+                        <span>Motivation</span>
+                        <strong>High</strong>
+                    </div>
+
+                    <div class="preview-track">
+                        <div style="width: 88%;"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+    <section class="home-section">
+
+        <div class="home-section-header">
+
+            <div class="tag">
+                HOW IT WORKS
+            </div>
+
+            <h2>
+                From your routine to useful insights.
+            </h2>
+
+        </div>
+
+
+        <div class="home-steps">
+
+            <div class="home-step">
+                <span>01</span>
+
+                <h3>Enter Your Information</h3>
+
+                <p>
+                    Tell us about your study routine,
+                    attendance and academic background.
+                </p>
+            </div>
+
+
+            <div class="home-step">
+                <span>02</span>
+
+                <h3>Machine Learning Analysis</h3>
+
+                <p>
+                    The trained model compares your inputs
+                    with patterns found in student data.
+                </p>
+            </div>
+
+
+            <div class="home-step">
+                <span>03</span>
+
+                <h3>Explore Your Report</h3>
+
+                <p>
+                    Receive an estimated exam score,
+                    insights and practical recommendations.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+    <section class="home-section home-factors">
+
+        <div class="home-section-header">
+
+            <div class="tag">
+                WHAT WE ANALYZE
+            </div>
+
+            <h2>
+                Multiple factors. One academic picture.
+            </h2>
+
+        </div>
+
+
+        <div class="home-factor-grid">
+
+            <div>Hours Studied</div>
+            <div>Attendance</div>
+            <div>Sleep Hours</div>
+            <div>Previous Scores</div>
+            <div>Motivation</div>
+            <div>Tutoring</div>
+            <div>Physical Activity</div>
+            <div>Extracurricular Activities</div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FINAL CTA -->
+    <section class="home-final-cta">
+
+        <div>
+            <h2>
+                Curious what your data says?
+            </h2>
+
+            <p>
+                Analyze your current academic routine
+                in less than a minute.
+            </p>
+        </div>
+
+        <a href="/predict" class="primary-button">
+            Start Analysis →
+        </a>
+
+    </section>
+
+</main>
+<footer class="site-footer">
+
+    <div class="footer-content">
+
+        <div class="footer-brand">
+            <img src="{{ url_for('static', path='/images/logo.png') }}"
+                 alt="Student Performance Logo">
+
+            <div>
+                <strong>Student Performance Predictor</strong>
+                <p>Data Science × Education</p>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/predict">Predictor</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/improve">Improve</a>
+            <a href="/about">About</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>Built with Python, FastAPI & scikit-learn</span>
+        <span>© 2026 Student Performance Predictor</span>
+    </div>
+
+</footer>
+</body>
+</html>
