@@ -7,63 +7,99 @@
 
     <title>Improve | Student Performance</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', path='/css/style.css') }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Student Performance Predictor</title>
-
     <link rel="icon"
           type="image/png"
           href="{{ url_for('static', path='/images/logo.png') }}">
 
     <link rel="stylesheet"
           href="{{ url_for('static', path='/css/style.css') }}">
+
+    <!-- GLOBAL LIGHT / DARK THEME -->
+    <script defer
+            src="{{ url_for('static', path='/jss/theme.js') }}">
+    </script>
 </head>
+
 
 <body>
 
+<!-- =========================
+     NAVBAR
+========================= -->
+
 <header>
+
     <nav class="navbar">
 
-    <div class="logo">
-    <img src="{{ url_for('static', path='/images/logo.png') }}"
-         alt="Student Performance Logo"
-         class="site-logo">
-    Student Performance
-</div>
+        <div class="logo">
+
+            <img src="{{ url_for('static', path='/images/logo.png') }}"
+                 alt="Student Performance Logo"
+                 class="site-logo">
+
+            Student Performance
+
+        </div>
+
 
         <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/predict">Predictor</a>
-            <a href="/how-it-works">How It Works</a>
-            <a href="/improve" class="active">Improve</a>
-            <a href="/about">About</a>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/predict">
+                Predictor
+            </a>
+
+            <a href="/how-it-works">
+                How It Works
+            </a>
+
+            <a href="/improve" class="active">
+                Improve
+            </a>
+
+            <a href="/about">
+                About
+            </a>
+
         </div>
-<div class="nav-actions">
 
-    <button
-        id="themeToggle"
-        class="theme-toggle"
-        type="button"
-        aria-label="Switch theme"
-    >
-        🌙
-    </button>
 
-    <a href="/predict" class="nav-button">
-        Analyze Now
-    </a>
+        <div class="nav-actions">
 
-</div>
+            <button
+                id="themeToggle"
+                class="theme-toggle"
+                type="button"
+                aria-label="Switch theme"
+            >
+                🌙
+            </button>
+
+            <a href="/predict"
+               class="nav-button">
+
+                Analyze Now
+
+            </a>
+
+        </div>
 
     </nav>
+
 </header>
 
 
+<!-- =========================
+     MAIN
+========================= -->
+
 <main class="improve-page">
+
+
+    <!-- HEADER -->
 
     <section class="improve-header">
 
@@ -85,13 +121,22 @@
     </section>
 
 
+    <!-- =========================
+         IMPROVEMENT CARDS
+    ========================== -->
+
     <section class="improvement-grid">
+
 
         <div class="improvement-card">
 
-            <div class="improvement-number">01</div>
+            <div class="improvement-number">
+                01
+            </div>
 
-            <h2>Study Consistently</h2>
+            <h2>
+                Study Consistently
+            </h2>
 
             <p>
                 Focus on consistent study sessions instead of relying on
@@ -99,8 +144,13 @@
             </p>
 
             <div class="improvement-tip">
-                <span>TRY THIS</span>
+
+                <span>
+                    TRY THIS
+                </span>
+
                 Plan focused study blocks throughout the week.
+
             </div>
 
         </div>
@@ -108,9 +158,13 @@
 
         <div class="improvement-card">
 
-            <div class="improvement-number">02</div>
+            <div class="improvement-number">
+                02
+            </div>
 
-            <h2>Protect Your Attendance</h2>
+            <h2>
+                Protect Your Attendance
+            </h2>
 
             <p>
                 Regular attendance helps maintain continuity and reduces
@@ -118,8 +172,13 @@
             </p>
 
             <div class="improvement-tip">
-                <span>TRY THIS</span>
+
+                <span>
+                    TRY THIS
+                </span>
+
                 Track missed classes and catch up on missed material quickly.
+
             </div>
 
         </div>
@@ -127,9 +186,13 @@
 
         <div class="improvement-card">
 
-            <div class="improvement-number">03</div>
+            <div class="improvement-number">
+                03
+            </div>
 
-            <h2>Build a Sleep Routine</h2>
+            <h2>
+                Build a Sleep Routine
+            </h2>
 
             <p>
                 A consistent sleep schedule can support attention, learning
@@ -137,8 +200,13 @@
             </p>
 
             <div class="improvement-tip">
-                <span>TRY THIS</span>
+
+                <span>
+                    TRY THIS
+                </span>
+
                 Keep your sleeping and waking times reasonably consistent.
+
             </div>
 
         </div>
@@ -146,9 +214,13 @@
 
         <div class="improvement-card">
 
-            <div class="improvement-number">04</div>
+            <div class="improvement-number">
+                04
+            </div>
 
-            <h2>Track Your Progress</h2>
+            <h2>
+                Track Your Progress
+            </h2>
 
             <p>
                 Previous academic performance can help reveal whether your
@@ -156,8 +228,13 @@
             </p>
 
             <div class="improvement-tip">
-                <span>TRY THIS</span>
+
+                <span>
+                    TRY THIS
+                </span>
+
                 Compare your results over time instead of focusing on one test.
+
             </div>
 
         </div>
@@ -165,9 +242,13 @@
 
         <div class="improvement-card">
 
-            <div class="improvement-number">05</div>
+            <div class="improvement-number">
+                05
+            </div>
 
-            <h2>Work With Your Motivation</h2>
+            <h2>
+                Work With Your Motivation
+            </h2>
 
             <p>
                 Motivation changes over time. Clear goals can make it easier
@@ -175,8 +256,13 @@
             </p>
 
             <div class="improvement-tip">
-                <span>TRY THIS</span>
+
+                <span>
+                    TRY THIS
+                </span>
+
                 Turn large academic goals into smaller weekly targets.
+
             </div>
 
         </div>
@@ -184,9 +270,13 @@
 
         <div class="improvement-card">
 
-            <div class="improvement-number">06</div>
+            <div class="improvement-number">
+                06
+            </div>
 
-            <h2>Ask for Support</h2>
+            <h2>
+                Ask for Support
+            </h2>
 
             <p>
                 Tutoring or additional academic support can help when a
@@ -194,8 +284,13 @@
             </p>
 
             <div class="improvement-tip">
-                <span>TRY THIS</span>
+
+                <span>
+                    TRY THIS
+                </span>
+
                 Identify difficult topics early instead of waiting until exams.
+
             </div>
 
         </div>
@@ -203,9 +298,13 @@
 
         <div class="improvement-card">
 
-            <div class="improvement-number">07</div>
+            <div class="improvement-number">
+                07
+            </div>
 
-            <h2>Stay Physically Active</h2>
+            <h2>
+                Stay Physically Active
+            </h2>
 
             <p>
                 Physical activity can be one part of a balanced routine
@@ -213,8 +312,13 @@
             </p>
 
             <div class="improvement-tip">
-                <span>TRY THIS</span>
+
+                <span>
+                    TRY THIS
+                </span>
+
                 Make regular movement part of your weekly schedule.
+
             </div>
 
         </div>
@@ -222,9 +326,13 @@
 
         <div class="improvement-card">
 
-            <div class="improvement-number">08</div>
+            <div class="improvement-number">
+                08
+            </div>
 
-            <h2>Build Beyond the Classroom</h2>
+            <h2>
+                Build Beyond the Classroom
+            </h2>
 
             <p>
                 Extracurricular activities can provide opportunities to
@@ -232,14 +340,23 @@
             </p>
 
             <div class="improvement-tip">
-                <span>TRY THIS</span>
+
+                <span>
+                    TRY THIS
+                </span>
+
                 Choose activities you value without overloading your schedule.
+
             </div>
 
         </div>
 
     </section>
 
+
+    <!-- =========================
+         REMINDER
+    ========================== -->
 
     <section class="improve-note">
 
@@ -264,54 +381,107 @@
     </section>
 
 
+    <!-- =========================
+         CTA
+    ========================== -->
+
     <section class="improve-cta">
 
         <div>
-            <h2>See what your data says.</h2>
+
+            <h2>
+                See what your data says.
+            </h2>
 
             <p>
                 Analyze your current routine and discover areas you may want
                 to work on.
             </p>
+
         </div>
 
-        <a href="/predict" class="primary-button">
+
+        <a href="/predict"
+           class="primary-button">
+
             Analyze My Performance →
+
         </a>
 
     </section>
 
 </main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer class="site-footer">
 
     <div class="footer-content">
 
         <div class="footer-brand">
+
             <img src="{{ url_for('static', path='/images/logo.png') }}"
                  alt="Student Performance Logo">
 
             <div>
-                <strong>Student Performance Predictor</strong>
-                <p>Data Science × Education</p>
+
+                <strong>
+                    Student Performance Predictor
+                </strong>
+
+                <p>
+                    Data Science × Education
+                </p>
+
             </div>
+
         </div>
 
+
         <div class="footer-links">
-            <a href="/">Home</a>
-            <a href="/predict">Predictor</a>
-            <a href="/how-it-works">How It Works</a>
-            <a href="/improve">Improve</a>
-            <a href="/about">About</a>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/predict">
+                Predictor
+            </a>
+
+            <a href="/how-it-works">
+                How It Works
+            </a>
+
+            <a href="/improve">
+                Improve
+            </a>
+
+            <a href="/about">
+                About
+            </a>
+
         </div>
 
     </div>
 
+
     <div class="footer-bottom">
-        <span>Built with Python, FastAPI & scikit-learn</span>
-        <span>© 2026 Student Performance Predictor</span>
+
+        <span>
+            Built with Python, FastAPI & scikit-learn
+        </span>
+
+        <span>
+            © 2026 Student Performance Predictor
+        </span>
+
     </div>
 
 </footer>
-<script src="{{ url_for('static', path='/jss/theme.js') }}"></script>
+
+
 </body>
 </html>

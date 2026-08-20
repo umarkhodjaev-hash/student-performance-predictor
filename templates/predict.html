@@ -13,51 +13,91 @@
 
     <link rel="stylesheet"
           href="{{ url_for('static', path='/css/style.css') }}">
+
+    <!-- GLOBAL LIGHT / DARK THEME -->
+    <script defer
+            src="{{ url_for('static', path='/jss/theme.js') }}">
+    </script>
 </head>
+
 
 <body>
 
+<!-- =========================
+     NAVBAR
+========================= -->
+
 <header>
+
     <nav class="navbar">
 
         <div class="logo">
+
             <img src="{{ url_for('static', path='/images/logo.png') }}"
                  alt="Student Performance Logo"
                  class="site-logo">
 
             Student Performance
+
         </div>
+
 
         <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/predict" class="active">Predictor</a>
-            <a href="/how-it-works">How It Works</a>
-            <a href="/improve">Improve</a>
-            <a href="/about">About</a>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/predict" class="active">
+                Predictor
+            </a>
+
+            <a href="/how-it-works">
+                How It Works
+            </a>
+
+            <a href="/improve">
+                Improve
+            </a>
+
+            <a href="/about">
+                About
+            </a>
+
         </div>
 
-<div class="nav-actions">
 
-    <button
-        id="themeToggle"
-        class="theme-toggle"
-        type="button"
-        aria-label="Switch theme"
-    >
-        🌙
-    </button>
+        <div class="nav-actions">
 
-    <a href="/predict" class="nav-button">
-        Analyze Now
-    </a>
+            <button
+                id="themeToggle"
+                class="theme-toggle"
+                type="button"
+                aria-label="Switch theme"
+            >
+                🌙
+            </button>
 
-</div>
+            <a href="/predict"
+               class="nav-button">
+                Analyze Now
+            </a>
+
+        </div>
 
     </nav>
+
 </header>
 
 
+<!-- =========================
+     PREDICTOR
+========================= -->
+
 <main class="predict-page">
+
+
+    <!-- HEADER -->
 
     <section class="predict-header">
 
@@ -70,19 +110,25 @@
         </h1>
 
         <p>
-            Answer a few questions about your academic routine, learning
-            environment and lifestyle. The model uses these factors to
-            estimate your exam performance and generate personalized insights.
+            Answer a few questions about your academic routine,
+            learning environment and lifestyle. The model uses
+            these factors to estimate your exam performance and
+            generate personalized insights.
         </p>
 
     </section>
 
+
+    <!-- =========================
+         FORM
+    ========================== -->
 
     <form action="/predict" method="post">
 
 
         <!-- =========================
              SECTION 1
+             ACADEMIC ROUTINE
         ========================== -->
 
         <section class="question-section">
@@ -92,11 +138,16 @@
                 <span>01</span>
 
                 <div>
-                    <h2>Academic Routine</h2>
+
+                    <h2>
+                        Academic Routine
+                    </h2>
+
                     <p>
                         These questions help us understand your workload,
                         attendance and independent study habits.
                     </p>
+
                 </div>
 
             </div>
@@ -105,8 +156,13 @@
             <div class="form-grid">
 
 
+                <!-- CLASSES PER WEEK -->
+
                 <div class="form-group">
-                    <label>How many classes do you have per week?</label>
+
+                    <label>
+                        How many classes do you have per week?
+                    </label>
 
                     <input
                         type="number"
@@ -121,11 +177,17 @@
                         Used to calculate attendance fairly for students
                         with different schedules.
                     </span>
+
                 </div>
 
 
+                <!-- CLASSES ATTENDED -->
+
                 <div class="form-group">
-                    <label>How many classes do you usually attend per week?</label>
+
+                    <label>
+                        How many classes do you usually attend per week?
+                    </label>
 
                     <input
                         type="number"
@@ -140,11 +202,17 @@
                         Compared with your total classes to calculate
                         your attendance percentage.
                     </span>
+
                 </div>
 
 
+                <!-- STUDY HOURS -->
+
                 <div class="form-group">
-                    <label>How many hours do you study independently per week?</label>
+
+                    <label>
+                        How many hours do you study independently per week?
+                    </label>
 
                     <input
                         type="number"
@@ -159,11 +227,17 @@
                     <span>
                         Independent study time outside regular lessons.
                     </span>
+
                 </div>
 
 
+                <!-- PREVIOUS SCORE -->
+
                 <div class="form-group">
-                    <label>What was your previous academic score?</label>
+
+                    <label>
+                        What was your previous academic score?
+                    </label>
 
                     <input
                         type="number"
@@ -179,11 +253,17 @@
                         Helps the model understand your recent academic
                         starting point.
                     </span>
+
                 </div>
 
 
+                <!-- TUTORING -->
+
                 <div class="form-group">
-                    <label>How many tutoring sessions do you attend per month?</label>
+
+                    <label>
+                        How many tutoring sessions do you attend per month?
+                    </label>
 
                     <input
                         type="number"
@@ -198,6 +278,7 @@
                     <span>
                         Shows how much additional academic support you receive.
                     </span>
+
                 </div>
 
             </div>
@@ -205,9 +286,9 @@
         </section>
 
 
-
         <!-- =========================
              SECTION 2
+             LEARNING ENVIRONMENT
         ========================== -->
 
         <section class="question-section">
@@ -217,11 +298,16 @@
                 <span>02</span>
 
                 <div>
-                    <h2>Learning Environment</h2>
+
+                    <h2>
+                        Learning Environment
+                    </h2>
+
                     <p>
-                        These factors describe the academic support and
-                        environment around you.
+                        These factors describe the academic support
+                        and environment around you.
                     </p>
+
                 </div>
 
             </div>
@@ -230,8 +316,13 @@
             <div class="form-grid">
 
 
+                <!-- PARENTAL INVOLVEMENT -->
+
                 <div class="form-group">
-                    <label>How involved are your parents in your education?</label>
+
+                    <label>
+                        How involved are your parents in your education?
+                    </label>
 
                     <select name="parental_involvement" required>
 
@@ -239,20 +330,34 @@
                             Select involvement level
                         </option>
 
-                        <option value="Low">Low</option>
-                        <option value="Medium">Medium</option>
-                        <option value="High">High</option>
+                        <option value="Low">
+                            Low
+                        </option>
+
+                        <option value="Medium">
+                            Medium
+                        </option>
+
+                        <option value="High">
+                            High
+                        </option>
 
                     </select>
 
                     <span>
                         Academic encouragement and involvement at home.
                     </span>
+
                 </div>
 
 
+                <!-- RESOURCES -->
+
                 <div class="form-group">
-                    <label>How good is your access to learning resources?</label>
+
+                    <label>
+                        How good is your access to learning resources?
+                    </label>
 
                     <select name="access_to_resources" required>
 
@@ -260,20 +365,34 @@
                             Select access level
                         </option>
 
-                        <option value="Low">Low</option>
-                        <option value="Medium">Medium</option>
-                        <option value="High">High</option>
+                        <option value="Low">
+                            Low
+                        </option>
+
+                        <option value="Medium">
+                            Medium
+                        </option>
+
+                        <option value="High">
+                            High
+                        </option>
 
                     </select>
 
                     <span>
                         Includes textbooks, learning materials and study tools.
                     </span>
+
                 </div>
 
 
+                <!-- INTERNET -->
+
                 <div class="form-group">
-                    <label>Do you have reliable internet access for studying?</label>
+
+                    <label>
+                        Do you have reliable internet access for studying?
+                    </label>
 
                     <select name="internet_access" required>
 
@@ -281,8 +400,13 @@
                             Select an option
                         </option>
 
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
+                        <option value="Yes">
+                            Yes
+                        </option>
+
+                        <option value="No">
+                            No
+                        </option>
 
                     </select>
 
@@ -290,11 +414,17 @@
                         Internet access can affect availability of online
                         learning resources.
                     </span>
+
                 </div>
 
 
+                <!-- TEACHER QUALITY -->
+
                 <div class="form-group">
-                    <label>How would you rate your teacher quality?</label>
+
+                    <label>
+                        How would you rate your teacher quality?
+                    </label>
 
                     <select name="teacher_quality" required>
 
@@ -302,20 +432,34 @@
                             Select teacher quality
                         </option>
 
-                        <option value="Low">Low</option>
-                        <option value="Medium">Medium</option>
-                        <option value="High">High</option>
+                        <option value="Low">
+                            Low
+                        </option>
+
+                        <option value="Medium">
+                            Medium
+                        </option>
+
+                        <option value="High">
+                            High
+                        </option>
 
                     </select>
 
                     <span>
                         Provides context about the learning environment.
                     </span>
+
                 </div>
 
 
+                <!-- PEER INFLUENCE -->
+
                 <div class="form-group">
-                    <label>How do your friends generally influence your studies?</label>
+
+                    <label>
+                        How do your friends generally influence your studies?
+                    </label>
 
                     <select name="peer_influence" required>
 
@@ -323,9 +467,17 @@
                             Select peer influence
                         </option>
 
-                        <option value="Negative">Negative</option>
-                        <option value="Neutral">Neutral</option>
-                        <option value="Positive">Positive</option>
+                        <option value="Negative">
+                            Negative
+                        </option>
+
+                        <option value="Neutral">
+                            Neutral
+                        </option>
+
+                        <option value="Positive">
+                            Positive
+                        </option>
 
                     </select>
 
@@ -333,11 +485,17 @@
                         Helps describe whether your social environment
                         supports or distracts from studying.
                     </span>
+
                 </div>
 
 
+                <!-- DISTANCE -->
+
                 <div class="form-group">
-                    <label>How far do you live from school?</label>
+
+                    <label>
+                        How far do you live from school?
+                    </label>
 
                     <select name="distance_from_home" required>
 
@@ -345,16 +503,25 @@
                             Select distance
                         </option>
 
-                        <option value="Near">Near</option>
-                        <option value="Moderate">Moderate</option>
-                        <option value="Far">Far</option>
+                        <option value="Near">
+                            Near
+                        </option>
+
+                        <option value="Moderate">
+                            Moderate
+                        </option>
+
+                        <option value="Far">
+                            Far
+                        </option>
 
                     </select>
 
                     <span>
-                        Travel distance may influence time available for
-                        study and rest.
+                        Travel distance may influence time available
+                        for study and rest.
                     </span>
+
                 </div>
 
             </div>
@@ -362,9 +529,9 @@
         </section>
 
 
-
         <!-- =========================
              SECTION 3
+             MOTIVATION & LIFESTYLE
         ========================== -->
 
         <section class="question-section">
@@ -374,11 +541,16 @@
                 <span>03</span>
 
                 <div>
-                    <h2>Motivation & Lifestyle</h2>
+
+                    <h2>
+                        Motivation & Lifestyle
+                    </h2>
+
                     <p>
-                        Your daily routine can provide additional context
-                        for academic performance.
+                        Your daily routine can provide additional
+                        context for academic performance.
                     </p>
+
                 </div>
 
             </div>
@@ -387,8 +559,13 @@
             <div class="form-grid">
 
 
+                <!-- MOTIVATION -->
+
                 <div class="form-group">
-                    <label>How motivated are you to study?</label>
+
+                    <label>
+                        How motivated are you to study?
+                    </label>
 
                     <select name="motivation_level" required>
 
@@ -396,20 +573,34 @@
                             Select motivation level
                         </option>
 
-                        <option value="Low">Low</option>
-                        <option value="Medium">Medium</option>
-                        <option value="High">High</option>
+                        <option value="Low">
+                            Low
+                        </option>
+
+                        <option value="Medium">
+                            Medium
+                        </option>
+
+                        <option value="High">
+                            High
+                        </option>
 
                     </select>
 
                     <span>
                         Your current level of academic motivation.
                     </span>
+
                 </div>
 
 
+                <!-- SLEEP -->
+
                 <div class="form-group">
-                    <label>How many hours do you usually sleep per night?</label>
+
+                    <label>
+                        How many hours do you usually sleep per night?
+                    </label>
 
                     <input
                         type="number"
@@ -424,11 +615,17 @@
                     <span>
                         Average sleep duration on a typical school night.
                     </span>
+
                 </div>
 
 
+                <!-- PHYSICAL ACTIVITY -->
+
                 <div class="form-group">
-                    <label>How many days per week are you physically active?</label>
+
+                    <label>
+                        How many days per week are you physically active?
+                    </label>
 
                     <select name="physical_activity" required>
 
@@ -450,11 +647,17 @@
                     <span>
                         Regular physical activity as part of your weekly routine.
                     </span>
+
                 </div>
 
 
+                <!-- EXTRACURRICULAR -->
+
                 <div class="form-group">
-                    <label>Do you participate in extracurricular activities?</label>
+
+                    <label>
+                        Do you participate in extracurricular activities?
+                    </label>
 
                     <select name="extracurricular_activities" required>
 
@@ -462,15 +665,21 @@
                             Select an option
                         </option>
 
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
+                        <option value="Yes">
+                            Yes
+                        </option>
+
+                        <option value="No">
+                            No
+                        </option>
 
                     </select>
 
                     <span>
-                        Includes clubs, competitions, sports and other
-                        organized activities.
+                        Includes clubs, competitions, sports and
+                        other organized activities.
                     </span>
+
                 </div>
 
             </div>
@@ -478,20 +687,30 @@
         </section>
 
 
+        <!-- =========================
+             SUBMIT
+        ========================== -->
+
         <div class="predict-submit-area">
 
             <div>
 
-                <strong>Ready for your analysis?</strong>
+                <strong>
+                    Ready for your analysis?
+                </strong>
 
                 <p>
-                    Your answers are used to create a performance estimate
-                    and personalized academic report.
+                    Your answers are used to create a performance
+                    estimate and personalized academic report.
                 </p>
 
             </div>
 
-            <button class="analyze-button" type="submit">
+
+            <button
+                class="analyze-button"
+                type="submit"
+            >
                 Analyze My Performance →
             </button>
 
@@ -501,6 +720,10 @@
 
 </main>
 
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer class="site-footer">
 
@@ -512,30 +735,61 @@
                  alt="Student Performance Logo">
 
             <div>
-                <strong>Student Performance Predictor</strong>
-                <p>Data Science × Education</p>
+
+                <strong>
+                    Student Performance Predictor
+                </strong>
+
+                <p>
+                    Data Science × Education
+                </p>
+
             </div>
 
         </div>
 
 
         <div class="footer-links">
-            <a href="/">Home</a>
-            <a href="/predict">Predictor</a>
-            <a href="/how-it-works">How It Works</a>
-            <a href="/improve">Improve</a>
-            <a href="/about">About</a>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/predict">
+                Predictor
+            </a>
+
+            <a href="/how-it-works">
+                How It Works
+            </a>
+
+            <a href="/improve">
+                Improve
+            </a>
+
+            <a href="/about">
+                About
+            </a>
+
         </div>
 
     </div>
 
 
     <div class="footer-bottom">
-        <span>Built with Python, FastAPI & scikit-learn</span>
-        <span>© 2026 Student Performance Predictor</span>
+
+        <span>
+            Built with Python, FastAPI & scikit-learn
+        </span>
+
+        <span>
+            © 2026 Student Performance Predictor
+        </span>
+
     </div>
 
 </footer>
-<script src="{{ url_for('static', path='/jss/theme.js') }}"></script>
+
+
 </body>
 </html>

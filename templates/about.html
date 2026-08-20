@@ -7,64 +7,97 @@
 
     <title>About | Student Performance</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', path='/css/style.css') }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Student Performance Predictor</title>
-
     <link rel="icon"
           type="image/png"
           href="{{ url_for('static', path='/images/logo.png') }}">
 
     <link rel="stylesheet"
           href="{{ url_for('static', path='/css/style.css') }}">
+
+    <!-- GLOBAL LIGHT / DARK THEME -->
+    <script defer
+            src="{{ url_for('static', path='/jss/theme.js') }}">
+    </script>
 </head>
+
 
 <body>
 
+<!-- =========================
+     NAVBAR
+========================= -->
+
 <header>
+
     <nav class="navbar">
 
-<div class="logo">
-    <img src="{{ url_for('static', path='/images/logo.png') }}"
-         alt="Student Performance Logo"
-         class="site-logo">
-    Student Performance
-</div>
+        <div class="logo">
 
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/predict">Predictor</a>
-            <a href="/how-it-works">How It Works</a>
-            <a href="/improve">Improve</a>
-            <a href="/about" class="active">About</a>
+            <img src="{{ url_for('static', path='/images/logo.png') }}"
+                 alt="Student Performance Logo"
+                 class="site-logo">
+
+            Student Performance
+
         </div>
 
-<div class="nav-actions">
 
-    <button
-        id="themeToggle"
-        class="theme-toggle"
-        type="button"
-        aria-label="Switch theme"
-    >
-        🌙
-    </button>
+        <div class="nav-links">
 
-    <a href="/predict" class="nav-button">
-        Analyze Now
-    </a>
+            <a href="/">
+                Home
+            </a>
 
-</div>
+            <a href="/predict">
+                Predictor
+            </a>
+
+            <a href="/how-it-works">
+                How It Works
+            </a>
+
+            <a href="/improve">
+                Improve
+            </a>
+
+            <a href="/about" class="active">
+                About
+            </a>
+
+        </div>
+
+
+        <div class="nav-actions">
+
+            <button
+                id="themeToggle"
+                class="theme-toggle"
+                type="button"
+                aria-label="Switch theme"
+            >
+                🌙
+            </button>
+
+            <a href="/predict"
+               class="nav-button">
+                Analyze Now
+            </a>
+
+        </div>
 
     </nav>
+
 </header>
 
 
+<!-- =========================
+     MAIN
+========================= -->
+
 <main class="about-page">
+
+
+    <!-- HERO -->
 
     <section class="about-hero">
 
@@ -85,6 +118,10 @@
     </section>
 
 
+    <!-- =========================
+         STORY 01
+    ========================== -->
+
     <section class="about-story">
 
         <div class="about-story-number">
@@ -92,7 +129,10 @@
         </div>
 
         <div>
-            <h2>The question</h2>
+
+            <h2>
+                The question
+            </h2>
 
             <p>
                 I began noticing that academic performance could not always
@@ -105,10 +145,15 @@
                 That made me ask a simple question: what factors actually
                 influence a student's academic performance?
             </p>
+
         </div>
 
     </section>
 
+
+    <!-- =========================
+         STORY 02
+    ========================== -->
 
     <section class="about-story">
 
@@ -117,7 +162,10 @@
         </div>
 
         <div>
-            <h2>From observation to data</h2>
+
+            <h2>
+                From observation to data
+            </h2>
 
             <p>
                 As I learned more about Python, statistics and machine learning,
@@ -130,10 +178,15 @@
                 variables such as study time, attendance, sleep, previous
                 academic performance and motivation.
             </p>
+
         </div>
 
     </section>
 
+
+    <!-- =========================
+         STORY 03
+    ========================== -->
 
     <section class="about-story">
 
@@ -142,7 +195,10 @@
         </div>
 
         <div>
-            <h2>Building the predictor</h2>
+
+            <h2>
+                Building the predictor
+            </h2>
 
             <p>
                 I developed Student Performance Predictor as a data science
@@ -156,10 +212,15 @@
                 and receive an estimated score, insights and practical
                 recommendations.
             </p>
+
         </div>
 
     </section>
 
+
+    <!-- =========================
+         STORY 04
+    ========================== -->
 
     <section class="about-story">
 
@@ -168,7 +229,10 @@
         </div>
 
         <div>
-            <h2>What I learned</h2>
+
+            <h2>
+                What I learned
+            </h2>
 
             <p>
                 Building the project taught me that prediction is only one
@@ -181,10 +245,15 @@
                 but also in understanding uncertainty, evaluating models and
                 communicating results responsibly.
             </p>
+
         </div>
 
     </section>
 
+
+    <!-- =========================
+         FUTURE VISION
+    ========================== -->
 
     <section class="about-vision">
 
@@ -212,46 +281,106 @@
     </section>
 
 
+    <!-- =========================
+         TECHNOLOGY
+    ========================== -->
+
     <section class="about-tech">
 
-        <h2>Built with</h2>
+        <h2>
+            Built with
+        </h2>
 
         <div class="about-tech-grid">
 
+
             <div>
+
                 <span>01</span>
-                <strong>Python</strong>
-                <p>Data processing and backend logic</p>
+
+                <strong>
+                    Python
+                </strong>
+
+                <p>
+                    Data processing and backend logic
+                </p>
+
             </div>
 
+
             <div>
+
                 <span>02</span>
-                <strong>FastAPI</strong>
-                <p>Web application backend</p>
+
+                <strong>
+                    FastAPI
+                </strong>
+
+                <p>
+                    Web application backend
+                </p>
+
             </div>
 
+
             <div>
+
                 <span>03</span>
-                <strong>scikit-learn</strong>
-                <p>Machine-learning model</p>
+
+                <strong>
+                    scikit-learn
+                </strong>
+
+                <p>
+                    Machine-learning model
+                </p>
+
             </div>
 
+
             <div>
+
                 <span>04</span>
-                <strong>pandas</strong>
-                <p>Dataset preparation</p>
+
+                <strong>
+                    pandas
+                </strong>
+
+                <p>
+                    Dataset preparation
+                </p>
+
             </div>
 
+
             <div>
+
                 <span>05</span>
-                <strong>Jinja2</strong>
-                <p>Dynamic HTML templates</p>
+
+                <strong>
+                    Jinja2
+                </strong>
+
+                <p>
+                    Dynamic HTML templates
+                </p>
+
             </div>
 
+
             <div>
+
                 <span>06</span>
-                <strong>HTML & CSS</strong>
-                <p>Interface and visual design</p>
+
+                <strong>
+                    HTML & CSS
+                </strong>
+
+                <p>
+                    Interface and visual design
+                </p>
+
             </div>
 
         </div>
@@ -259,9 +388,14 @@
     </section>
 
 
+    <!-- =========================
+         CTA
+    ========================== -->
+
     <section class="about-cta">
 
         <div>
+
             <h2>
                 Explore your own academic patterns.
             </h2>
@@ -270,45 +404,91 @@
                 Use the predictor to see how your academic routine compares
                 with patterns learned from student performance data.
             </p>
+
         </div>
 
-        <a href="/predict" class="primary-button">
+
+        <a href="/predict"
+           class="primary-button">
+
             Analyze My Performance →
+
         </a>
 
     </section>
 
 </main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer class="site-footer">
 
     <div class="footer-content">
 
         <div class="footer-brand">
+
             <img src="{{ url_for('static', path='/images/logo.png') }}"
                  alt="Student Performance Logo">
 
             <div>
-                <strong>Student Performance Predictor</strong>
-                <p>Data Science × Education</p>
+
+                <strong>
+                    Student Performance Predictor
+                </strong>
+
+                <p>
+                    Data Science × Education
+                </p>
+
             </div>
+
         </div>
 
+
         <div class="footer-links">
-            <a href="/">Home</a>
-            <a href="/predict">Predictor</a>
-            <a href="/how-it-works">How It Works</a>
-            <a href="/improve">Improve</a>
-            <a href="/about">About</a>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/predict">
+                Predictor
+            </a>
+
+            <a href="/how-it-works">
+                How It Works
+            </a>
+
+            <a href="/improve">
+                Improve
+            </a>
+
+            <a href="/about">
+                About
+            </a>
+
         </div>
 
     </div>
 
+
     <div class="footer-bottom">
-        <span>Built with Python, FastAPI & scikit-learn</span>
-        <span>© 2026 Student Performance Predictor</span>
+
+        <span>
+            Built with Python, FastAPI & scikit-learn
+        </span>
+
+        <span>
+            © 2026 Student Performance Predictor
+        </span>
+
     </div>
 
 </footer>
-<script src="{{ url_for('static', path='/jss/theme.js') }}"></script>
+
+
 </body>
 </html>

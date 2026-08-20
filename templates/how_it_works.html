@@ -3,17 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>How It Works | Student Performance</title>
-
-    <link rel="stylesheet"
-          href="{{ url_for('static', path='/css/style.css') }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Student Performance Predictor</title>
 
     <link rel="icon"
           type="image/png"
@@ -21,6 +15,11 @@
 
     <link rel="stylesheet"
           href="{{ url_for('static', path='/css/style.css') }}">
+
+    <!-- GLOBAL LIGHT / DARK THEME -->
+    <script defer
+            src="{{ url_for('static', path='/jss/theme.js') }}">
+    </script>
 </head>
 
 <body>
@@ -167,15 +166,15 @@
             <strong>6,607 Students</strong>
         </div>
 
-        <div class="model-detail-card">
-            <span>R² SCORE</span>
-            <strong>0.606</strong>
-        </div>
+<div class="model-detail-card">
+    <span>R² SCORE</span>
+    <strong>0.670</strong>
+</div>
 
-        <div class="model-detail-card">
-            <span>MEAN ABSOLUTE ERROR</span>
-            <strong>1.38</strong>
-        </div>
+<div class="model-detail-card">
+    <span>MEAN ABSOLUTE ERROR</span>
+    <strong>1.11</strong>
+</div>
 
     </section>
 
@@ -317,7 +316,7 @@
 
                 <span>MAE</span>
 
-                <h3>1.38</h3>
+                <h3>1.11</h3>
 
                 <p>
                     Mean Absolute Error measures the average difference between
@@ -331,7 +330,7 @@
 
                 <span>R²</span>
 
-                <h3>0.606</h3>
+                <h3>0.670</h3>
 
                 <p>
                     R² describes how much of the variation in exam scores
@@ -440,6 +439,6 @@
     </div>
 
 </footer>
-<script src="{{ url_for('static', path='/jss/theme.js') }}"></script>
+
 </body>
 </html>
