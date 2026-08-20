@@ -2455,3 +2455,97 @@ h1 span {
     border-color: #4d9fff;
     transform: translateY(-1px);
 }
+
+/* =========================
+   LIGHT THEME
+========================= */
+
+body.light-theme {
+    background: #f5f7fb;
+    color: #111827;
+}
+
+body.light-theme .navbar {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+body.light-theme .nav-links a {
+    color: #5b6472;
+}
+
+body.light-theme .nav-links a:hover,
+body.light-theme .nav-links .active {
+    color: #111827;
+}
+
+body.light-theme .theme-toggle {
+    background: #ffffff;
+    color: #111827;
+    border: 1px solid #d7dce5;
+}
+
+body.light-theme .performance-preview,
+body.light-theme .home-step,
+body.light-theme .home-factor-grid div,
+body.light-theme .home-final-cta,
+body.light-theme .dashboard-card,
+body.light-theme .score-card,
+body.light-theme .grade-box,
+body.light-theme .question-section,
+body.light-theme .predict-submit-area,
+body.light-theme .how-section,
+body.light-theme .model-detail-card,
+body.light-theme .improvement-card,
+body.light-theme .improve-note,
+body.light-theme .improve-cta,
+body.light-theme .about-vision,
+body.light-theme .about-tech,
+body.light-theme .about-cta,
+body.light-theme .model-card {
+    background: #ffffff;
+    border-color: #e2e7ef;
+    color: #111827;
+}
+
+body.light-theme .home-description,
+body.light-theme .hero-description,
+body.light-theme .dashboard-header p,
+body.light-theme .predict-header p,
+body.light-theme .how-header p,
+body.light-theme .section-description,
+body.light-theme .improve-header p,
+body.light-theme .about-hero p,
+body.light-theme .about-story p,
+body.light-theme .about-vision p,
+body.light-theme .about-cta p,
+body.light-theme .chart-description,
+body.light-theme .chart-note,
+body.light-theme .data-row span,
+body.light-theme .review-list p,
+body.light-theme .recommendation-item p,
+body.light-theme .insight-list li {
+    color: #657083;
+}
+
+body.light-theme input,
+body.light-theme select,
+body.light-theme .recommendation-item,
+body.light-theme .review-list > div,
+body.light-theme .factor-track,
+body.light-theme .attendance-track {
+    background: #f8fafc;
+    color: #111827;
+    border-color: #d9e0e8;
+}
+
+body.light-theme .site-footer {
+    border-top-color: #e5e7eb;
+}
+
+body.light-theme .footer-links a,
+body.light-theme .footer-brand p,
+body.light-theme .footer-bottom {
+    color: #6b7280;
+}
+
