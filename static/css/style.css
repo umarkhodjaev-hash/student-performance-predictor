@@ -2751,3 +2751,29 @@ body.light-theme .how-cta h2 {
 body.light-theme .how-cta p {
     color: #5f6b7a;
 }
+.language-switcher {
+    height: 42px;
+    padding: 0 12px;
+
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    background: #0d1a2b;
+    color: white;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+    outline: none;
+}
+
+.language-switcher:hover {
+    border-color: #4d9fff;
+}
+
+body.light-theme .language-switcher {
+    background: #ffffff;
+    color: #111827;
+    border-color: #d7dce5;
+}
