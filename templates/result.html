@@ -944,8 +944,9 @@ hoverBackgroundColor: [
                     ctx.save();
 
 
-                    ctx.fillStyle =
-                        "#ffffff";
+ctx.fillStyle = document.body.classList.contains("light-theme")
+    ? "#111827"
+    : "#ffffff";
 
                     ctx.font =
                         "700 30px Arial";
