@@ -2734,3 +2734,20 @@ body.light-theme .metric-explanation h3 {
 body.light-theme .metric-explanation p {
     color: #5f6b7a;
 }
+
+/* =========================
+   LIGHT MODE - CTA FIX
+========================= */
+
+body.light-theme .how-cta {
+    background: #ffffff;
+    border-color: #dfe5ee;
+}
+
+body.light-theme .how-cta h2 {
+    color: #111827;
+}
+
+body.light-theme .how-cta p {
+    color: #5f6b7a;
+}
