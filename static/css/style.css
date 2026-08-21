@@ -2606,3 +2606,131 @@ body.light-theme .chart-card h2 {
 body.light-theme .chart-card p {
     color: #526176;
 }
+
+/* ========================================
+   FIX: DARK CARDS TEXT
+======================================== */
+
+.tech-card h3,
+.tech-card h4,
+.tech-card strong {
+    color: #ffffff !important;
+}
+
+.tech-card p {
+    color: #8fb4e8 !important;
+}
+
+.tech-card .number,
+.tech-card .card-number {
+    color: #4f9cff !important;
+}
+
+/* Feature cards */
+.feature-card h3,
+.feature-card h4,
+.feature-card strong {
+    color: #ffffff !important;
+}
+
+.feature-card p {
+    color: #8fb4e8 !important;
+}
+
+/* Training step cards */
+.training-card h3,
+.training-card h4,
+.training-card strong,
+.step-card h3,
+.step-card h4,
+.step-card strong {
+    color: #ffffff !important;
+}
+
+.training-card p,
+.step-card p {
+    color: #8fb4e8 !important;
+}
+
+.training-card .step,
+.step-card .step {
+    color: #4f9cff !important;
+}
+/* ========================================
+   FINAL LIGHT THEME FIX
+======================================== */
+
+/* HOW IT WORKS — feature cards */
+
+body.light-theme .feature-item {
+    background: #f8fafc;
+    border-color: #d9e0e8;
+}
+
+body.light-theme .feature-item strong {
+    color: #111827;
+}
+
+body.light-theme .feature-item p {
+    color: #5f6b7a;
+}
+
+body.light-theme .feature-item > span {
+    color: #2563eb;
+}
+
+
+/* HOW IT WORKS — training cards */
+
+body.light-theme .training-flow > div {
+    background: #f8fafc;
+    border-color: #d9e0e8;
+}
+
+body.light-theme .training-flow strong {
+    color: #111827;
+}
+
+body.light-theme .training-flow p {
+    color: #5f6b7a;
+}
+
+body.light-theme .training-flow span {
+    color: #2563eb;
+}
+
+
+/* ABOUT — Built with */
+
+body.light-theme .about-tech-grid > div {
+    background: #f8fafc;
+    border-color: #d9e0e8;
+}
+
+body.light-theme .about-tech-grid strong {
+    color: #111827;
+}
+
+body.light-theme .about-tech-grid p {
+    color: #5f6b7a;
+}
+
+body.light-theme .about-tech-grid span {
+    color: #2563eb;
+}
+
+
+/* Extra HOW IT WORKS cards */
+
+body.light-theme .metric-explanation {
+    background: #f8fafc;
+    border-color: #d9e0e8;
+}
+
+body.light-theme .metric-explanation h3 {
+    color: #111827;
+}
+
+body.light-theme .metric-explanation p {
+    color: #5f6b7a;
+}
