@@ -5,7 +5,8 @@ const translations = {
         how: "How It Works",
         improve: "Improve",
         about: "About",
-        analyze: "Analyze Now"
+        analyze: "Analyze Now",
+        analyzeAgain: "Analyze Again"
     },
 
     ru: {
@@ -14,7 +15,8 @@ const translations = {
         how: "Как это работает",
         improve: "Улучшить",
         about: "О проекте",
-        analyze: "Анализировать"
+        analyze: "Анализировать",
+        analyzeAgain: "Анализировать снова"
     },
 
     uz: {
@@ -23,7 +25,8 @@ const translations = {
         how: "Qanday ishlaydi",
         improve: "Yaxshilash",
         about: "Loyiha haqida",
-        analyze: "Tahlil qilish"
+        analyze: "Tahlil qilish",
+        analyzeAgain: "Qayta tahlil qilish"
     },
 
     tr: {
@@ -32,7 +35,8 @@ const translations = {
         how: "Nasıl Çalışır",
         improve: "Geliştir",
         about: "Hakkında",
-        analyze: "Analiz Et"
+        analyze: "Analiz Et",
+        analyzeAgain: "Tekrar Analiz Et"
     },
 
     de: {
@@ -41,7 +45,8 @@ const translations = {
         how: "So funktioniert es",
         improve: "Verbessern",
         about: "Über uns",
-        analyze: "Jetzt analysieren"
+        analyze: "Jetzt analysieren",
+        analyzeAgain: "Erneut analysieren"
     },
 
     fr: {
@@ -50,7 +55,8 @@ const translations = {
         how: "Comment ça marche",
         improve: "Améliorer",
         about: "À propos",
-        analyze: "Analyser"
+        analyze: "Analyser",
+        analyzeAgain: "Analyser à nouveau"
     },
 
     es: {
@@ -59,7 +65,8 @@ const translations = {
         how: "Cómo funciona",
         improve: "Mejorar",
         about: "Acerca de",
-        analyze: "Analizar"
+        analyze: "Analizar",
+        analyzeAgain: "Analizar de nuevo"
     },
 
     it: {
@@ -68,7 +75,8 @@ const translations = {
         how: "Come funziona",
         improve: "Migliora",
         about: "Informazioni",
-        analyze: "Analizza"
+        analyze: "Analizza",
+        analyzeAgain: "Analizza di nuovo"
     },
 
     ar: {
@@ -77,7 +85,8 @@ const translations = {
         how: "كيف يعمل",
         improve: "تحسين",
         about: "حول",
-        analyze: "تحليل"
+        analyze: "تحليل",
+        analyzeAgain: "تحليل مرة أخرى"
     },
 
     zh: {
@@ -86,27 +95,34 @@ const translations = {
         how: "工作原理",
         improve: "提升",
         about: "关于",
-        analyze: "开始分析"
+        analyze: "开始分析",
+        analyzeAgain: "再次分析"
     }
 };
 
 function changeLanguage(lang) {
     const selectedLanguage = translations[lang];
 
-    if (!selectedLanguage) return;
+    if (!selectedLanguage) {
+        return;
+    }
 
-    document.querySelectorAll("[data-i18n]").forEach(element => {
-        const key = element.dataset.i18n;
+    // Translate all elements that have data-i18n
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.getAttribute("data-i18n");
 
         if (selectedLanguage[key]) {
             element.textContent = selectedLanguage[key];
         }
     });
 
+    // Save selected language
     localStorage.setItem("language", lang);
 
+    // Update page language
     document.documentElement.lang = lang;
 
+    // Arabic uses right-to-left layout
     if (lang === "ar") {
         document.documentElement.dir = "rtl";
     } else {
@@ -117,14 +133,27 @@ function changeLanguage(lang) {
 document.addEventListener("DOMContentLoaded", () => {
     const switcher = document.getElementById("languageSwitcher");
 
-    if (!switcher) return;
+    if (!switcher) {
+        return;
+    }
 
+    // Load saved language or use English by default
     const savedLanguage = localStorage.getItem("language") || "en";
 
-    switcher.value = savedLanguage;
-    changeLanguage(savedLanguage);
+    // Make sure saved language still exists
+    const activeLanguage = translations[savedLanguage]
+        ? savedLanguage
+        : "en";
 
+    switcher.value = activeLanguage;
+
+    changeLanguage(activeLanguage);
+
+    // Change language when user selects another option
     switcher.addEventListener("change", (event) => {
-        changeLanguage(event.target.value);
+        const selectedLanguage = event.target.value;
+
+        changeLanguage(selectedLanguage);
     });
 });
+
