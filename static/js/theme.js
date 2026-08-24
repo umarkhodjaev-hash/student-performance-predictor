@@ -1,59 +1,40 @@
-document.addEventListener("DOMContentLoaded", function () {
-
+document.addEventListener("DOMContentLoaded", () => {
     const themeToggle = document.getElementById("themeToggle");
-
-    // Get saved theme
     const savedTheme = localStorage.getItem("theme");
 
     // Apply saved theme
     if (savedTheme === "light") {
         document.body.classList.add("light-theme");
+    } else {
+        document.body.classList.remove("light-theme");
     }
 
-    // Change button icon
     function updateThemeIcon() {
-
         if (!themeToggle) return;
 
-        if (document.body.classList.contains("light-theme")) {
-            themeToggle.textContent = "☀️";
-            themeToggle.setAttribute(
-                "aria-label",
-                "Switch to dark mode"
-            );
-        } else {
-            themeToggle.textContent = "🌙";
-            themeToggle.setAttribute(
-                "aria-label",
-                "Switch to light mode"
-            );
-        }
+        const isLight = document.body.classList.contains("light-theme");
+
+        themeToggle.textContent = isLight ? "☀️" : "🌙";
+        themeToggle.setAttribute(
+            "aria-label",
+            isLight ? "Switch to dark mode" : "Switch to light mode"
+        );
     }
 
     updateThemeIcon();
 
+    if (!themeToggle) return;
 
-    // Switch theme when button is clicked
-    if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("light-theme");
 
-        themeToggle.addEventListener("click", function () {
+        const isLight = document.body.classList.contains("light-theme");
 
-            document.body.classList.toggle("light-theme");
+        localStorage.setItem(
+            "theme",
+            isLight ? "light" : "dark"
+        );
 
-            if (document.body.classList.contains("light-theme")) {
-
-                localStorage.setItem("theme", "light");
-
-            } else {
-
-                localStorage.setItem("theme", "dark");
-
-            }
-
-            updateThemeIcon();
-
-        });
-
-    }
-
+        updateThemeIcon();
+    });
 });
