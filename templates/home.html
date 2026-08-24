@@ -19,10 +19,9 @@
     <link rel="stylesheet"
           href="{{ url_for('static', path='/css/style.css') }}">
 
-    <!-- GLOBAL THEME -->
-<script defer
-        src="{{ url_for('static', path='/js/theme.js') }}">
-</script>
+    <script defer
+            src="{{ url_for('static', path='/js/theme.js') }}">
+    </script>
 </head>
 
 
@@ -47,55 +46,70 @@
         </div>
 
 
- <div class="nav-links">
+        <div class="nav-links">
 
-    <a href="/" class="active" data-i18n="home">
-        Home
-    </a>
+            <a href="/"
+               class="active"
+               data-i18n="home">
+                Home
+            </a>
 
-    <a href="/predict" data-i18n="predictor">
-        Predictor
-    </a>
+            <a href="/predict"
+               data-i18n="predictor">
+                Predictor
+            </a>
 
-    <a href="/how-it-works" data-i18n="how">
-        How It Works
-    </a>
+            <a href="/how-it-works"
+               data-i18n="how">
+                How It Works
+            </a>
 
-    <a href="/improve" data-i18n="improve">
-        Improve
-    </a>
+            <a href="/improve"
+               data-i18n="improve">
+                Improve
+            </a>
 
-    <a href="/about" data-i18n="about">
-        About
-    </a>
+            <a href="/about"
+               data-i18n="about">
+                About
+            </a>
 
- </div>
+        </div>
 
 
         <div class="nav-actions">
-<select id="languageSwitcher" class="language-switcher">
-    <option value="en">🇬🇧 EN</option>
-    <option value="ru">🇷🇺 RU</option>
-    <option value="uz">🇺🇿 UZ</option>
-    <option value="tr">🇹🇷 TR</option>
-    <option value="de">🇩🇪 DE</option>
-    <option value="fr">🇫🇷 FR</option>
-    <option value="es">🇪🇸 ES</option>
-    <option value="it">🇮🇹 IT</option>
-    <option value="ar">🇸🇦 AR</option>
-    <option value="zh">🇨🇳 中文</option>
-</select>
+
+            <select id="languageSwitcher"
+                    class="language-switcher">
+
+                <option value="en">🇬🇧 EN</option>
+                <option value="ru">🇷🇺 RU</option>
+                <option value="uz">🇺🇿 UZ</option>
+                <option value="tr">🇹🇷 TR</option>
+                <option value="de">🇩🇪 DE</option>
+                <option value="fr">🇫🇷 FR</option>
+                <option value="es">🇪🇸 ES</option>
+                <option value="it">🇮🇹 IT</option>
+                <option value="ar">🇸🇦 AR</option>
+                <option value="zh">🇨🇳 中文</option>
+
+            </select>
+
 
             <button
                 id="themeToggle"
                 class="theme-toggle"
                 type="button"
-                aria-label="Switch theme"
-            >
+                aria-label="Switch theme">
                 🌙
             </button>
 
-<a href="/predict" class="nav-button" data-i18n="analyze">Analyze Now</a>
+
+            <a href="/predict"
+               class="nav-button"
+               data-i18n="analyze">
+                Analyze Now
+            </a>
 
         </div>
 
@@ -120,44 +134,46 @@
 
         <div class="home-hero-text">
 
-            <div class="tag">
+            <div class="tag"
+                 data-i18n="homeTag">
                 DATA SCIENCE × EDUCATION
             </div>
 
 
             <h1>
-                Understand your habits.
-                <span>
+
+                <span data-i18n="homeTitle1">
+                    Understand your habits.
+                </span>
+
+                <span data-i18n="homeTitle2">
                     Improve your performance.
                 </span>
+
             </h1>
 
 
-            <p class="home-description">
-
+            <p class="home-description"
+               data-i18n="homeDescription">
                 Discover how your study habits, attendance,
                 sleep, motivation and learning environment
                 may relate to academic performance using
                 data-driven analysis.
-
             </p>
 
 
             <div class="hero-buttons">
 
                 <a href="/predict"
-                   class="primary-button">
-
+                   class="primary-button"
+                   data-i18n="homeAnalyzeButton">
                     Analyze My Performance →
-
                 </a>
 
-
                 <a href="/how-it-works"
-                   class="secondary-button">
-
+                   class="secondary-button"
+                   data-i18n="homeHowButton">
                     How It Works
-
                 </a>
 
             </div>
@@ -179,18 +195,20 @@
 
                 <div>
 
-                    <span class="preview-label">
+                    <span class="preview-label"
+                          data-i18n="latestAnalysis">
                         YOUR LATEST ANALYSIS
                     </span>
 
-                    <h3>
+                    <h3 data-i18n="academicAnalysis">
                         Academic Analysis
                     </h3>
 
                 </div>
 
 
-                <div class="preview-status">
+                <div class="preview-status"
+                     data-i18n="personal">
                     PERSONAL
                 </div>
 
@@ -201,7 +219,7 @@
 
                 <div>
 
-                    <span>
+                    <span data-i18n="estimatedScore">
                         Estimated Score
                     </span>
 
@@ -219,9 +237,7 @@
 
 
                 <div class="preview-level">
-
                     {{ last_analysis.performance_level }}
-
                 </div>
 
             </div>
@@ -230,18 +246,17 @@
             <div class="preview-bars">
 
 
-                <!-- STUDY -->
-
                 <div class="preview-bar-row">
 
                     <div>
 
-                        <span>
+                        <span data-i18n="factorStudyTime">
                             Study Time
                         </span>
 
                         <strong>
-                            {{ last_analysis.hours_studied }} hrs/week
+                            {{ last_analysis.hours_studied }}
+                            <span data-i18n="hoursPerWeek">hrs/week</span>
                         </strong>
 
                     </div>
@@ -249,13 +264,11 @@
                 </div>
 
 
-                <!-- ATTENDANCE -->
-
                 <div class="preview-bar-row">
 
                     <div>
 
-                        <span>
+                        <span data-i18n="factorAttendance">
                             Attendance
                         </span>
 
@@ -276,18 +289,17 @@
                 </div>
 
 
-                <!-- SLEEP -->
-
                 <div class="preview-bar-row">
 
                     <div>
 
-                        <span>
+                        <span data-i18n="sleep">
                             Sleep
                         </span>
 
                         <strong>
-                            {{ last_analysis.sleep_hours }} hrs/night
+                            {{ last_analysis.sleep_hours }}
+                            <span data-i18n="hoursPerNight">hrs/night</span>
                         </strong>
 
                     </div>
@@ -295,13 +307,11 @@
                 </div>
 
 
-                <!-- MOTIVATION -->
-
                 <div class="preview-bar-row">
 
                     <div>
 
-                        <span>
+                        <span data-i18n="factorMotivation">
                             Motivation
                         </span>
 
@@ -316,10 +326,9 @@
             </div>
 
 
-            <div class="preview-footer">
-
+            <div class="preview-footer"
+                 data-i18n="latestPerformanceAnalysis">
                 Your latest performance analysis
-
             </div>
 
 
@@ -330,29 +339,27 @@
 
             <div class="preview-empty">
 
-                <span class="preview-label">
+                <span class="preview-label"
+                      data-i18n="performanceAnalysis">
                     PERFORMANCE ANALYSIS
                 </span>
 
 
-                <h3>
+                <h3 data-i18n="noAnalysis">
                     No analysis yet.
                 </h3>
 
 
-                <p>
-
+                <p data-i18n="noAnalysisDescription">
                     Complete the predictor to see your
                     personal academic report here.
-
                 </p>
 
 
                 <a href="/predict"
-                   class="primary-button">
-
+                   class="primary-button"
+                   data-i18n="homeAnalyzeButton">
                     Analyze My Performance →
-
                 </a>
 
             </div>
@@ -374,12 +381,13 @@
 
         <div class="home-section-header">
 
-            <div class="tag">
+            <div class="tag"
+                 data-i18n="homeHowTag">
                 HOW IT WORKS
             </div>
 
 
-            <h2>
+            <h2 data-i18n="homeHowTitle">
                 From your routine to useful insights.
             </h2>
 
@@ -395,16 +403,14 @@
                     01
                 </span>
 
-                <h3>
+                <h3 data-i18n="homeStep1Title">
                     Enter Your Information
                 </h3>
 
-                <p>
-
+                <p data-i18n="homeStep1Text">
                     Answer detailed questions about your
                     study routine, attendance, academic
                     environment and lifestyle.
-
                 </p>
 
             </div>
@@ -416,16 +422,14 @@
                     02
                 </span>
 
-                <h3>
+                <h3 data-i18n="homeStep2Title">
                     Machine Learning Analysis
                 </h3>
 
-                <p>
-
+                <p data-i18n="homeStep2Text">
                     The trained model compares your inputs
                     with patterns found in student
                     performance data.
-
                 </p>
 
             </div>
@@ -437,16 +441,14 @@
                     03
                 </span>
 
-                <h3>
+                <h3 data-i18n="homeStep3Title">
                     Explore Your Report
                 </h3>
 
-                <p>
-
+                <p data-i18n="homeStep3Text">
                     Receive an estimated exam score,
                     visualizations, insights and
                     personalized recommendations.
-
                 </p>
 
             </div>
@@ -465,12 +467,13 @@
 
         <div class="home-section-header">
 
-            <div class="tag">
+            <div class="tag"
+                 data-i18n="homeFactorsTag">
                 WHAT WE ANALYZE
             </div>
 
 
-            <h2>
+            <h2 data-i18n="homeFactorsTitle">
                 Multiple factors. One academic picture.
             </h2>
 
@@ -479,51 +482,51 @@
 
         <div class="home-factor-grid">
 
-            <div>
+            <div data-i18n="factorStudyTime">
                 Study Time
             </div>
 
-            <div>
+            <div data-i18n="factorAttendance">
                 Attendance
             </div>
 
-            <div>
+            <div data-i18n="factorPreviousScores">
                 Previous Scores
             </div>
 
-            <div>
+            <div data-i18n="factorSleepHours">
                 Sleep Hours
             </div>
 
-            <div>
+            <div data-i18n="factorMotivation">
                 Motivation
             </div>
 
-            <div>
+            <div data-i18n="factorTutoring">
                 Tutoring
             </div>
 
-            <div>
+            <div data-i18n="factorResources">
                 Learning Resources
             </div>
 
-            <div>
+            <div data-i18n="factorInternet">
                 Internet Access
             </div>
 
-            <div>
+            <div data-i18n="factorTeacher">
                 Teacher Quality
             </div>
 
-            <div>
+            <div data-i18n="factorPeer">
                 Peer Influence
             </div>
 
-            <div>
+            <div data-i18n="factorActivity">
                 Physical Activity
             </div>
 
-            <div>
+            <div data-i18n="factorExtracurricular">
                 Extracurricular Activities
             </div>
 
@@ -540,26 +543,23 @@
 
         <div>
 
-            <h2>
+            <h2 data-i18n="homeCtaTitle">
                 Curious what your data says?
             </h2>
 
 
-            <p>
-
+            <p data-i18n="homeCtaText">
                 Analyze your academic routine
                 and explore your personalized report.
-
             </p>
 
         </div>
 
 
         <a href="/predict"
-           class="primary-button">
-
+           class="primary-button"
+           data-i18n="homeCtaButton">
             Start Analysis →
-
         </a>
 
     </section>
@@ -600,11 +600,25 @@
 
         <div class="footer-links">
 
-<a href="/" data-i18n="home">Home</a>
-<a href="/predict" data-i18n="predictor">Predictor</a>
-<a href="/how-it-works" data-i18n="how">How It Works</a>
-<a href="/improve" data-i18n="improve">Improve</a>
-<a href="/about" data-i18n="about">About</a>
+            <a href="/" data-i18n="home">
+                Home
+            </a>
+
+            <a href="/predict" data-i18n="predictor">
+                Predictor
+            </a>
+
+            <a href="/how-it-works" data-i18n="how">
+                How It Works
+            </a>
+
+            <a href="/improve" data-i18n="improve">
+                Improve
+            </a>
+
+            <a href="/about" data-i18n="about">
+                About
+            </a>
 
         </div>
 
@@ -624,6 +638,9 @@
     </div>
 
 </footer>
+
+
 <script src="/static/js/language.js"></script>
+
 </body>
 </html>
