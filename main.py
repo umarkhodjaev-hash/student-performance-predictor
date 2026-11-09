@@ -625,9 +625,3 @@ async def team_ping(p: TeamPing):
         status = {"bad": 400, "busy": 429, "full": 409}.get(str(e), 400)
         raise HTTPException(status_code=status, detail=str(e))
 
-
-
-
-
-
--
