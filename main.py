@@ -432,3 +432,60 @@ Sitemap: https://student-performance-predictor-bas2.onrender.com/sitemap.xml
         media_type="text/plain"
     )
 
+# ===== API FOR VERCEL FRONTEND =====
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+class PredictIn(BaseModel):
+    hours_studied: float
+    classes_per_week: int
+    classes_attended: int
+    previous_scores: float
+    parental_involvement: str
+    access_to_resources: str
+    motivation_level: str
+    internet_access: str
+    tutoring_sessions: int
+    teacher_quality: str
+    peer_influence: str
+    sleep_hours: float
+    physical_activity: int
+    extracurricular_activities: str
+    distance_from_home: str
+
+
+@app.post("/api/predict")
+async def api_predict(p: PredictIn):
+    if p.classes_per_week <= 0:
+        attendance = 0
+    else:
+        attendance = (p.classes_attended / p.classes_per_week) * 100
+    attendance = round(min(attendance, 100), 1)
+
+    data = pd.DataFrame({
+        "Hours_Studied": [p.hours_studied],
+        "Attendance": [attendance],
+        "Parental_Involvement": [p.parental_involvement],
+        "Access_to_Resources": [p.access_to_resources],
+        "Extracurricular_Activities": [p.extracurricular_activities],
+        "Sleep_Hours": [p.sleep_hours],
+        "Previous_Scores": [p.previous_scores],
+        "Motivation_Level": [p.motivation_level],
+        "Internet_Access": [p.internet_access],
+        "Tutoring_Sessions": [p.tutoring_sessions],
+        "Teacher_Quality": [p.teacher_quality],
+        "Peer_Influence": [p.peer_influence],
+        "Physical_Activity": [p.physical_activity],
+        "Distance_from_Home": [p.distance_from_home],
+    })
+
+    prediction = round(float(model.predict(data)[0]), 1)
+    return {"prediction": prediction, "attendance": attendance}
