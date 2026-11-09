@@ -531,12 +531,15 @@ async def room_state():
 
 
 
+
+
+
 # ===== STUDY ROOMS BY LINK (private groups, in-memory) =====
 import re
 import time
 from fastapi import HTTPException
-
-
+ 
+ 
 class TeamPing(BaseModel):
     code: str
     sid: str
@@ -544,29 +547,29 @@ class TeamPing(BaseModel):
     studying: bool = False
     today_min: int = 0
     week_min: int = 0
-
-
+ 
+ 
 _teams = {}                 # code -> {sid: member dict}
 _TEAM_ONLINE = 70           # seconds since last ping -> counted as online
 _TEAM_KEEP = 8 * 24 * 3600  # keep a member (and their weekly minutes) for 8 days
 _TEAM_MAX_ROOMS = 300
 _TEAM_MAX_MEMBERS = 30
 _TEAM_CODE = re.compile(r"^[a-z0-9]{4,12}$")
-
-
+ 
+ 
 def _team_clean_name(name):
     name = re.sub(r"[\x00-\x1f<>&\"'`]", "", name or "").strip()
     return name[:20] or "Student"
-
-
+ 
+ 
 def _team_clamp(v, hi):
     try:
         v = int(v)
     except (TypeError, ValueError):
         return 0
     return max(0, min(hi, v))
-
-
+ 
+ 
 def _team_gc(now):
     for code in list(_teams.keys()):
         room = _teams[code]
@@ -574,8 +577,8 @@ def _team_gc(now):
             room.pop(sid, None)
         if not room:
             _teams.pop(code, None)
-
-
+ 
+ 
 def _team_snapshot(code, me, now):
     members = []
     for sid, m in _teams.get(code, {}).items():
@@ -590,8 +593,8 @@ def _team_snapshot(code, me, now):
         })
     members.sort(key=lambda x: (-x["week_min"], x["name"].lower()))
     return {"members": members, "count": len(members)}
-
-
+ 
+ 
 def _team_update(code, sid, name, studying, today_min, week_min, now=None):
     now = time.time() if now is None else now
     code = (code or "").lower()
@@ -615,8 +618,8 @@ def _team_update(code, sid, name, studying, today_min, week_min, now=None):
         "day": int(now // 86400),
     }
     return _team_snapshot(code, sid, now)
-
-
+ 
+ 
 @app.post("/api/team/ping")
 async def team_ping(p: TeamPing):
     try:
@@ -624,4 +627,6 @@ async def team_ping(p: TeamPing):
     except ValueError as e:
         status = {"bad": 400, "busy": 429, "full": 409}.get(str(e), 400)
         raise HTTPException(status_code=status, detail=str(e))
+
+
 
