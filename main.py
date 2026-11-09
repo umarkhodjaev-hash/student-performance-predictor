@@ -489,3 +489,42 @@ async def api_predict(p: PredictIn):
 
     prediction = round(float(model.predict(data)[0]), 1)
     return {"prediction": prediction, "attendance": attendance}
+
+
+
+# ===== FOCUS ROOM (anonymous live counter, in-memory) =====
+import time
+
+
+class PingIn(BaseModel):
+    sid: str
+    studying: bool = False
+
+
+_room = {}          # sid -> (last_seen, studying)
+_ROOM_TTL = 70      # seconds without a ping -> visitor is gone
+_ROOM_MAX = 5000    # safety cap
+
+
+def _room_counts():
+    now = time.time()
+    for k in [k for k, v in _room.items() if now - v[0] > _ROOM_TTL]:
+        _room.pop(k, None)
+    return {
+        "total": len(_room),
+        "studying": sum(1 for v in _room.values() if v[1]),
+    }
+
+
+@app.post("/api/room/ping")
+async def room_ping(p: PingIn):
+    sid = p.sid[:40]
+    if sid not in _room and len(_room) >= _ROOM_MAX:
+        return _room_counts()
+    _room[sid] = (time.time(), bool(p.studying))
+    return _room_counts()
+
+
+@app.get("/api/room")
+async def room_state():
+    return _room_counts()
