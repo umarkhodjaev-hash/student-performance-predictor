@@ -528,3 +528,106 @@ async def room_ping(p: PingIn):
 @app.get("/api/room")
 async def room_state():
     return _room_counts()
+
+
+
+# ===== STUDY ROOMS BY LINK (private groups, in-memory) =====
+import re
+import time
+from fastapi import HTTPException
+
+
+class TeamPing(BaseModel):
+    code: str
+    sid: str
+    name: str = ""
+    studying: bool = False
+    today_min: int = 0
+    week_min: int = 0
+
+
+_teams = {}                 # code -> {sid: member dict}
+_TEAM_ONLINE = 70           # seconds since last ping -> counted as online
+_TEAM_KEEP = 8 * 24 * 3600  # keep a member (and their weekly minutes) for 8 days
+_TEAM_MAX_ROOMS = 300
+_TEAM_MAX_MEMBERS = 30
+_TEAM_CODE = re.compile(r"^[a-z0-9]{4,12}$")
+
+
+def _team_clean_name(name):
+    name = re.sub(r"[\x00-\x1f<>&\"'`]", "", name or "").strip()
+    return name[:20] or "Student"
+
+
+def _team_clamp(v, hi):
+    try:
+        v = int(v)
+    except (TypeError, ValueError):
+        return 0
+    return max(0, min(hi, v))
+
+
+def _team_gc(now):
+    for code in list(_teams.keys()):
+        room = _teams[code]
+        for sid in [s for s, m in room.items() if now - m["seen"] > _TEAM_KEEP]:
+            room.pop(sid, None)
+        if not room:
+            _teams.pop(code, None)
+
+
+def _team_snapshot(code, me, now):
+    members = []
+    for sid, m in _teams.get(code, {}).items():
+        online = now - m["seen"] <= _TEAM_ONLINE
+        members.append({
+            "name": m["name"],
+            "online": online,
+            "studying": bool(online and m["studying"]),
+            "today_min": m["today_min"] if online or m["day"] == int(now // 86400) else 0,
+            "week_min": m["week_min"],
+            "you": sid == me,
+        })
+    members.sort(key=lambda x: (-x["week_min"], x["name"].lower()))
+    return {"members": members, "count": len(members)}
+
+
+def _team_update(code, sid, name, studying, today_min, week_min, now=None):
+    now = time.time() if now is None else now
+    code = (code or "").lower()
+    sid = (sid or "")[:40]
+    if not _TEAM_CODE.match(code) or len(sid) < 8:
+        raise ValueError("bad")
+    _team_gc(now)
+    room = _teams.get(code)
+    if room is None:
+        if len(_teams) >= _TEAM_MAX_ROOMS:
+            raise ValueError("busy")
+        room = _teams[code] = {}
+    if sid not in room and len(room) >= _TEAM_MAX_MEMBERS:
+        raise ValueError("full")
+    room[sid] = {
+        "name": _team_clean_name(name),
+        "studying": bool(studying),
+        "today_min": _team_clamp(today_min, 1440),
+        "week_min": _team_clamp(week_min, 10080),
+        "seen": now,
+        "day": int(now // 86400),
+    }
+    return _team_snapshot(code, sid, now)
+
+
+@app.post("/api/team/ping")
+async def team_ping(p: TeamPing):
+    try:
+        return _team_update(p.code, p.sid, p.name, p.studying, p.today_min, p.week_min)
+    except ValueError as e:
+        status = {"bad": 400, "busy": 429, "full": 409}.get(str(e), 400)
+        raise HTTPException(status_code=status, detail=str(e))
+
+
+
+
+
+
+-
